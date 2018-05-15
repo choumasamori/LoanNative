@@ -1,22 +1,27 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import { Container, Header, Content, Item, Input } from 'native-base';
 
-class HomeScreen extends React.Component {
+class Login extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-      </View>
+      <Container>
+        <Content>
+          <Item>
+            <Input placeholder="Email" />
+          </Item>
+        </Content>
+      </Container>
     );
   }
 }
 
-class DetailsScreen extends React.Component {
+class Register extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
+        <Text>Register</Text>
       </View>
     );
   }
@@ -24,11 +29,11 @@ class DetailsScreen extends React.Component {
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen,
-    Details: DetailsScreen,
+    Login: Login,
+    Register: Register,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
   }
 );
 
