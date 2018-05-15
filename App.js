@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Container, Header, Content, Form, Item, Input, Button, Label} from 'native-base';
+import Dashboard from "./src/screens/Dashboard/Dashboard";
 
-class Login extends React.Component {
+class Login extends Component {
   render() {
     return (
       <Container style={{backgroundColor: 'white'}}>
@@ -18,7 +19,7 @@ class Login extends React.Component {
               <Input/>
             </Item>
           </Form>
-          <Button rounded primary full onPress={()=>this.props.navigation.navigate('Register')}>
+          <Button rounded primary full onPress={()=>this.props.navigation.navigate('Dashboard')}>
             <Text style={{color:'white'}}>Log In</Text>
           </Button>
         </Content>
@@ -27,7 +28,7 @@ class Login extends React.Component {
   }
 }
 
-class Register extends React.Component {
+class Register extends Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -49,11 +50,19 @@ const RootStack = createStackNavigator({
     navigationOptions: {
       title: "Register"
     }
-  }
+  },
+    Dashboard: {
+      screen: Dashboard,
+        navigationOptions: {
+          title: "Dashboard"
+        }
+    }
 });
 
-export default class App extends React.Component {
+class App extends Component {
   render() {
     return <RootStack />;
   }
 }
+
+export default App;
