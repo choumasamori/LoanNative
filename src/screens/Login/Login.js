@@ -12,7 +12,6 @@ class Login extends Component {
             username: "",
             password: "",
             error: "",
-            remember:false
         }
     }
 
@@ -66,8 +65,8 @@ class Login extends Component {
       return (
         <Container style={{backgroundColor: 'white',}}>
           <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', flex:1, marginTop:'10%'}}>
-            <Card style={{width:'80%',height:'auto',paddingTop:'10%',paddingBottom:'10%'}}>
-                    <Image source={require('../../img/logo.png')} style={{width: 151, height: 200, alignSelf:'center',}}/>
+            <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
+                    <Image source={require('../../img/logo.png')} style={{width: '50%', height: '50%', alignSelf:'center', resizeMode:'contain'}}/>
                     <Form>
                         <Item floatingLabel>
                         <Label>Username/Email/Phone Number</Label>
@@ -84,9 +83,6 @@ class Login extends Component {
                             />
                         </Item>
                     </Form>
-                    <CardItem>
-                    <CheckBox value={this.state.remember} onValueChange={()=>this.setState({remember:!this.state.remember})}/><Text>Remember Me</Text>
-                    </CardItem>
                     <CardItem>
                        <Button rounded full onPress={ this.onLoginPressed.bind(this)} style={{backgroundColor:'purple'}}>
                              <Text>Log In</Text>
