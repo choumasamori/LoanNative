@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {Text, View, Image} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Container, Header, Content, Form, Item, Input, Button, Label} from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Button, Label, Thumbnail, Body} from 'native-base';
 
 class Login extends Component {
     render() {
+        const uriLogo = './src'
       return (
         <Container style={{backgroundColor: 'white'}}>
           <Content>
+          <Thumbnail square large style={{backgroundColor:'black'}}/>
           <Form>
               <Item floatingLabel>
               <Label>Username/Email/Phone Number</Label>
