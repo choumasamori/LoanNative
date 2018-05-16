@@ -64,9 +64,9 @@ class Login extends Component {
     render() {
       return (
         <Container style={{backgroundColor: 'white',}}>
-          <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'20%'}}>
+          <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', flex:1, marginTop:'10%'}}>
             <Card style={{width:'80%',paddingTop:20,paddingBottom:20}}>
-                    <Image source={{uri:'https://www.freelogodesign.org/img/logo-ex-7.png'}} style={{width: 200, height: 200, alignSelf:'center'}}/>
+                    <Image source={require('../../img/logo.png')} style={{width: 200, height: 264, alignSelf:'center',}}/>
                     <Form>
                         <Item floatingLabel>
                         <Label>Username/Email/Phone Number</Label>
@@ -90,10 +90,10 @@ class Login extends Component {
                     </CardItem>
                       <CardItem>
                             <Left>
-                            <Text note>Forgot Your Password ?</Text>
+                            <Text note onPress={()=>this.props.navigation.navigate('Forgot')}>Forgot Your Password ?</Text>
                             </Left>
                            <Right>
-                            <Text note>Create New Account</Text>
+                            <Text note onPress={()=>this.props.navigation.navigate('Register')}>Create New Account</Text>
                             </Right>
                       </CardItem>
             </Card>
