@@ -1,28 +1,94 @@
 import React, { Component } from 'react';
-import {Text, View, Image} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import { Container, Header, Content, Form, Item, Input, Button, Label, Thumbnail, Body} from 'native-base';
+import {Image} from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row, } from 'native-base';
+
+const ACCESS_TOKEN = '';
 
 class Login extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: "",
+            password: "",
+            error: ""
+        }
+    }
+
+    handleUsername = (text) => {
+        this.setState({ username: text })
+    }
+
+    handlePassword = (text) => {
+        this.setState({ password: text })
+    }
+
+    async storeToken(accessToken){
+        try{
+            await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
+        }catch(error){
+            console.log("something went wrong store token login");
+        }
+    }
+
+    async onLoginPressed() {
+        try {
+            let response = await fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'username': this.state.username,
+                    'password': this.state.password,
+                })
+            });
+            let res = await response.text();
+            if(response.status >= 200 && response.status < 300) {
+                this.setState({ error: "" });
+                let accessToken = res;
+                this.storeToken(accessToken);
+                console.log("res token login: " + accessToken);
+                this.props.navigation.navigate('Dashboard');
+            } else {
+                let error = res;
+                throw error;
+            }
+        } catch (error) {
+            this.setState({error: error});
+            console.log("error " + error);
+        }
+    }
+
+
     render() {
-        const uriLogo = './src'
       return (
-        <Container style={{backgroundColor: 'white'}}>
-          <Content>
-          <Thumbnail square large style={{backgroundColor:'black'}}/>
-          <Form>
-              <Item floatingLabel>
-              <Label>Username/Email/Phone Number</Label>
-                <Input/>
-              </Item> 
-              <Item floatingLabel>
-              <Label>Password</Label>
-                <Input/>
-              </Item>
-            </Form>
-            <Button rounded primary full onPress={()=>this.props.navigation.navigate('Dashboard')}>
-              <Text style={{color:'white'}}>Log In</Text>
-            </Button>
+        <Container style={{backgroundColor: 'white',}}>
+          <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center'}}>
+            <Card style={{padding:20, width:'80%',}}>
+                    <Image source={{uri:'https://www.freelogodesign.org/img/logo-ex-7.png'}} style={{width: 200, height: 200, alignSelf:'center'}}/>
+                    <Form>
+                        <Item floatingLabel>
+                        <Label>Username/Email/Phone Number</Label>
+                            <Input
+                                onChangeText={ this.handleUsername}
+                            />
+                        </Item>
+
+                        <Item floatingLabel>
+                        <Label>Password</Label>
+                            <Input
+                                onChangeText={ this.handlePassword}
+                                secureTextEntry={true}
+                            />
+                        </Item>
+                    </Form>
+                       <Button rounded primary full onPress={ this.onLoginPressed.bind(this) }>
+                             <Text style={{color:'white'}}>Log In</Text>
+                      </Button>
+                      
+            </Card>
+              <Text> {this.state.error} </Text>
           </Content>
         </Container>
       );
