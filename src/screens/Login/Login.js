@@ -56,6 +56,7 @@ class Login extends Component {
             }
         } catch (error) {
             this.setState({error: error});
+            alert(this.state.error);
             console.log("error " + error);
         }
     }
@@ -97,8 +98,6 @@ class Login extends Component {
                             </Right>
                       </CardItem>
             </Card>
-              <Text> {this.state.error} </Text>
-              
           </Content>
         </Container>
       );
