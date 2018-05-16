@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image} from 'react-native';
+import {Image, CheckBox} from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row,Left,Right } from 'native-base';
 
 const ACCESS_TOKEN = '';
@@ -11,7 +11,8 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            error: ""
+            error: "",
+            remember:false
         }
     }
 
@@ -83,6 +84,9 @@ class Login extends Component {
                             />
                         </Item>
                     </Form>
+                    <CardItem>
+                    <CheckBox value={this.state.remember} onValueChange={()=>this.setState({remember:!this.state.remember})}/><Text>Remember Me</Text>
+                    </CardItem>
                     <CardItem>
                        <Button rounded full onPress={ this.onLoginPressed.bind(this)} style={{backgroundColor:'purple'}}>
                              <Text>Log In</Text>
