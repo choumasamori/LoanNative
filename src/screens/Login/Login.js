@@ -64,7 +64,7 @@ class Login extends Component {
     render() {
       return (
         <Container style={{backgroundColor: 'white',}}>
-          <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center'}}>
+          <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'20%'}}>
             <Card style={{padding:20, width:'80%',}}>
                     <Image source={{uri:'https://www.freelogodesign.org/img/logo-ex-7.png'}} style={{width: 200, height: 200, alignSelf:'center'}}/>
                     <Form>
