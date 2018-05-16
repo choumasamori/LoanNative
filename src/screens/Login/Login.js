@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Image, CheckBox} from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row,Left,Right } from 'native-base';
+import {Image} from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
 
 const ACCESS_TOKEN = '';
 
@@ -12,7 +12,6 @@ class Login extends Component {
             username: "",
             password: "",
             error: "",
-            remember:false
         }
     }
 
@@ -67,7 +66,7 @@ class Login extends Component {
         <Container style={{backgroundColor: 'white',}}>
           <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', flex:1, marginTop:'10%'}}>
             <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
-                    <Image source={require('../../img/logo.png')} style={{width: 151, height: 200, alignSelf:'center',}}/>
+                    <Image source={require('../../img/logo.png')} style={{width: '50%', height: '50%', alignSelf:'center', resizeMode:'contain'}}/>
                     <Form>
                         <Item floatingLabel>
                         <Label>Username/Email/Phone Number</Label>
@@ -84,9 +83,6 @@ class Login extends Component {
                             />
                         </Item>
                     </Form>
-                    <CardItem>
-                    <CheckBox value={this.state.remember} onValueChange={()=>this.setState({remember:!this.state.remember})}/><Text>Remember Me</Text>
-                    </CardItem>
                     <CardItem>
                        <Button rounded full onPress={ this.onLoginPressed.bind(this)} style={{backgroundColor:'purple'}}>
                              <Text>Log In</Text>
