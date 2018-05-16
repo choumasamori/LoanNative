@@ -23,7 +23,7 @@ const RootStack = createStackNavigator({
     Dashboard: {
       screen: Dashboard,
         navigationOptions: {
-          title: "Dashboard"
+            header:null,
         }
     },
     Forgot: {
