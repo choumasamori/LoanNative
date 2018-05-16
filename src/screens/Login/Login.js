@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Image, CheckBox} from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row,Left,Right } from 'native-base';
+import {Image} from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
 
 const ACCESS_TOKEN = '';
 
