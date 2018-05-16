@@ -66,7 +66,7 @@ class Login extends Component {
       return (
         <Container style={{backgroundColor: 'white',}}>
           <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', flex:1, marginTop:'10%'}}>
-            <Card style={{width:'80%',height:'auto',paddingTop:'10%',paddingBottom:'10%'}}>
+            <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                     <Image source={require('../../img/logo.png')} style={{width: 151, height: 200, alignSelf:'center',}}/>
                     <Form>
                         <Item floatingLabel>
