@@ -56,13 +56,13 @@ class Login extends Component {
             }
         } catch (error) {
             //this.setState({error: error});
-            if(error.status === 400) {
+            if(error.status === 401) {
                 this.setState({
-                    error: 'Username / Password Salah'
+                    error: 'Wrong Username/Password'
                 })
             } else {
                 this.setState({
-                    error: 'Username / Password Salah'
+                    error: 'Wrong Username/Password'
                 })
             }
             Alert.alert(
