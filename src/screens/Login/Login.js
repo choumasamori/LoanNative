@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Image} from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row, } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Button, Label, Card, CardItem, Body, Text, Row,Left,Right } from 'native-base';
 
 const ACCESS_TOKEN = '';
 
@@ -65,7 +65,7 @@ class Login extends Component {
       return (
         <Container style={{backgroundColor: 'white',}}>
           <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'20%'}}>
-            <Card style={{padding:30, width:'80%',}}>
+            <Card style={{width:'80%',paddingTop:20,paddingBottom:20}}>
                     <Image source={{uri:'https://www.freelogodesign.org/img/logo-ex-7.png'}} style={{width: 200, height: 200, alignSelf:'center'}}/>
                     <Form>
                         <Item floatingLabel>
@@ -85,12 +85,20 @@ class Login extends Component {
                     </Form>
                     <CardItem>
                        <Button rounded full onPress={ this.onLoginPressed.bind(this)} style={{backgroundColor:'purple'}}>
-                             <Text style={{color:'white'}}>Log In</Text>
+                             <Text>Log In</Text>
                       </Button>
                     </CardItem>
-                      
+                      <CardItem>
+                            <Left>
+                            <Text note>Forgot Your Password ?</Text>
+                            </Left>
+                           <Right>
+                            <Text note>Create New Account</Text>
+                            </Right>
+                      </CardItem>
             </Card>
               <Text> {this.state.error} </Text>
+              
           </Content>
         </Container>
       );
