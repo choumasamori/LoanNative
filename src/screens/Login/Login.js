@@ -55,7 +55,16 @@ class Login extends Component {
                 throw error;
             }
         } catch (error) {
-            this.setState({error: error});
+            //this.setState({error: error});
+            if(error.status === 400) {
+                this.setState({
+                    error: 'Username / Password Salah'
+                })
+            } else {
+                this.setState({
+                    error: 'Username / Password Salah'
+                })
+            }
             Alert.alert(
                 'Warning',
                 this.state.error,
