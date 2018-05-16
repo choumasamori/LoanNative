@@ -81,6 +81,7 @@ class Login extends Component {
     render() {
       return (
         <Container style={{backgroundColor: 'white',}}>
+            <Image source={require('../../img/bg.jpg')} style={{width:'100%', height:'100%', position:'absolute', resizeMode:'cover'}}/>
           <Content contentContainerStyle={{justifyContent: 'center',alignItems: 'center', flex:1, marginTop:'10%'}}>
             <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                     <Image source={require('../../img/logo.png')} style={{width: '50%', height: '50%', alignSelf:'center', resizeMode:'contain'}}/>
