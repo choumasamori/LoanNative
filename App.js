@@ -23,7 +23,10 @@ const RootStack = createStackNavigator({
     Dashboard: {
       screen: Dashboard,
         navigationOptions: {
-            header:null,
+          title:'KreditPRO',
+          headerLeft:null,
+          headerTitleStyle :{color:'white', textAlign:'center', flex:1},
+          headerStyle:{backgroundColor:'purple'}
         }
     },
     Forgot: {
