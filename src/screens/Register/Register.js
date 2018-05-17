@@ -7,6 +7,11 @@ export class Register extends Component {
     super(props);
     this.state={
       genderOptions:null,
+      maritalOptions:null,
+      religionOptions:null,
+      workOptions:null,
+      educationOptions:null,
+      salaryRangeOptions:null,
       date:'1996-10-15',
       gender:'male',
       marital:'married',
@@ -62,7 +67,81 @@ export class Register extends Component {
       genderOptions:options,
     });
   }).catch((error)=>{console.log(error)})
-     
+  fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+	}).then((results) => results.json()).then((data)=>{
+    let options =  data.maritalOptions.map((option)=>{
+      return(
+              <Picker.Item label={option} value={option} />
+      );
+    });
+    this.setState({
+      maritalOptions:options,
+    });
+  }).catch((error)=>{console.log(error)})
+  fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+}).then((results) => results.json()).then((data)=>{
+let options =  data.religionOptions.map((option)=>{
+  return(
+          <Picker.Item label={option} value={option} />
+  );
+});
+this.setState({
+  religionOptions:options,
+});
+}).catch((error)=>{console.log(error)})
+fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+	}).then((results) => results.json()).then((data)=>{
+    let options =  data.workOptions.map((option)=>{
+      return(
+              <Picker.Item label={option} value={option} />
+      );
+    });
+    this.setState({
+      workOptions:options,
+    });
+  }).catch((error)=>{console.log(error)})
+  fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+	}).then((results) => results.json()).then((data)=>{
+    let options =  data.educationOptions.map((option)=>{
+      return(
+              <Picker.Item label={option} value={option} />
+      );
+    });
+    this.setState({
+      educationOptions:options,
+    });
+  }).catch((error)=>{console.log(error)})
+  fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+	}).then((results) => results.json()).then((data)=>{
+    let options =  data.salaryRangeOptions.map((option)=>{
+      return(
+              <Picker.Item label={option} value={option} />
+      );
+    });
+    this.setState({
+      salaryRangeOptions:options,
+    });
+  }).catch((error)=>{console.log(error)})
   }
     render() {
       return (
@@ -181,9 +260,7 @@ export class Register extends Component {
                     selectedValue={this.state.marital}
                     onValueChange={this.onValueChange2.bind(this)}
                   >
-              <Picker.Item label="Married" value="married" />
-              <Picker.Item label="Not Married" value="notMarried" />
-              <Picker.Item label="Divorced" value="divorced" />
+              {this.state.maritalOptions}
             </Picker>
             </CardItem>
             <CardItem>
@@ -198,11 +275,7 @@ export class Register extends Component {
                     selectedValue={this.state.religion}
                     onValueChange={this.onValueChange3.bind(this)}
                   >
-              <Picker.Item label="Christianity" value="christianity" />
-              <Picker.Item label="Buddhist" value="buddhist" />
-              <Picker.Item label="Islamic" value="islamic" />
-              <Picker.Item label="Catholic" value="catholic" />
-              <Picker.Item label="Konghucu" value="konghucu" />
+              {this.state.religionOptions}
             </Picker>
             </CardItem>
             <CardItem>
@@ -217,11 +290,7 @@ export class Register extends Component {
                     selectedValue={this.state.work}
                     onValueChange={this.onValueChange4.bind(this)}
                   >
-              <Picker.Item label="PNS" value="pns" />
-              <Picker.Item label="BUMN" value="bumn" />
-              <Picker.Item label="Swasta" value="swasta" />
-              <Picker.Item label="Wiraswasta" value="wiraswasta" />
-              <Picker.Item label="Lain-lain" value="lainlain" />
+              {this.state.workOptions}
             </Picker>
             </CardItem>
             <CardItem>
@@ -236,13 +305,7 @@ export class Register extends Component {
                     selectedValue={this.state.education}
                     onValueChange={this.onValueChange5.bind(this)}
                   >
-              <Picker.Item label="SD" value="sd" />
-              <Picker.Item label="SMP" value="smp" />
-              <Picker.Item label="SMA" value="sma" />
-              <Picker.Item label="Diploma" value="diploma" />
-              <Picker.Item label="Sarjana" value="sarjana" />
-              <Picker.Item label="Master" value="master" />
-              <Picker.Item label="Doctoral" value="doctoral" />
+              {this.state.educationOptions}
             </Picker>
             </CardItem>
             <CardItem>
@@ -257,10 +320,7 @@ export class Register extends Component {
                     selectedValue={this.state.salary}
                     onValueChange={this.onValueChange6.bind(this)}
                   >
-              <Picker.Item label="< Rp.3.000.000" value="<3000000" />
-              <Picker.Item label="Rp 3.000.000 - Rp 5.000.000" value="3000000-5000000" />
-              <Picker.Item label="Rp 5.000.000 - Rp 10.000.000" value="5000000-10000000" />
-              <Picker.Item label="> Rp 10.000.000" value=">10000000" />
+              {this.state.salaryRangeOptions}
             </Picker>
             </CardItem>
                 </Form>
