@@ -6,6 +6,7 @@ export class Register extends Component {
   constructor(props){
     super(props);
     this.state={
+      genderOptions:null,
       date:'1996-10-15',
       gender:'male',
       marital:'married',
@@ -44,6 +45,24 @@ export class Register extends Component {
     this.setState({
       salary: value
     });
+  }
+  componentDidMount(){
+    fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+	}).then((results) => results.json()).then((data)=>{
+    let options =  data.genderOptions.map((option)=>{
+      return(
+              <Picker.Item label={option} value={option} />
+      );
+    });
+    this.setState({
+      genderOptions:options,
+    });
+  }).catch((error)=>{console.log(error)})
+     
   }
     render() {
       return (
@@ -147,8 +166,7 @@ export class Register extends Component {
                     selectedValue={this.state.gender}
                     onValueChange={this.onValueChange1.bind(this)}
                   >
-              <Picker.Item label="Male" value="male" />
-              <Picker.Item label="Female" value="female" />
+              {this.state.genderOptions}
             </Picker>
             </CardItem>
             <CardItem>
