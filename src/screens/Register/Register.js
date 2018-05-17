@@ -48,8 +48,8 @@ export class Register extends Component {
     render() {
       return (
           <Container>
-            <Content>
-              <Card>
+            <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%'}}>
+              <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                 <Form>
                   <Item floatingLabel>
                     <Label>Username</Label>
