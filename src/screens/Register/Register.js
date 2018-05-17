@@ -60,7 +60,7 @@ export class Register extends Component {
 	}).then((results) => results.json()).then((data)=>{
     let options =  data.genderOptions.map((option)=>{
       return(
-              <Picker.Item label={option} value={option} />
+              <Picker.Item label={option} value={option} key={options}/>
       );
     });
     this.setState({
@@ -75,7 +75,7 @@ export class Register extends Component {
 	}).then((results) => results.json()).then((data)=>{
     let options =  data.maritalOptions.map((option)=>{
       return(
-              <Picker.Item label={option} value={option} />
+              <Picker.Item label={option} value={option} key={options}/>
       );
     });
     this.setState({
@@ -90,7 +90,7 @@ export class Register extends Component {
 }).then((results) => results.json()).then((data)=>{
 let options =  data.religionOptions.map((option)=>{
   return(
-          <Picker.Item label={option} value={option} />
+          <Picker.Item label={option} value={option} key={options}/>
   );
 });
 this.setState({
@@ -105,7 +105,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 	}).then((results) => results.json()).then((data)=>{
     let options =  data.workOptions.map((option)=>{
       return(
-              <Picker.Item label={option} value={option} />
+              <Picker.Item label={option} value={option} key={options}/>
       );
     });
     this.setState({
@@ -120,7 +120,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 	}).then((results) => results.json()).then((data)=>{
     let options =  data.educationOptions.map((option)=>{
       return(
-              <Picker.Item label={option} value={option} />
+              <Picker.Item label={option} value={option} key={options}/>
       );
     });
     this.setState({
@@ -135,7 +135,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 	}).then((results) => results.json()).then((data)=>{
     let options =  data.salaryRangeOptions.map((option)=>{
       return(
-              <Picker.Item label={option} value={option} />
+              <Picker.Item label={option} value={option} key={options}/>
       );
     });
     this.setState({
