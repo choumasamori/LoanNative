@@ -12,13 +12,13 @@ export class Register extends Component {
             workOptions:null,
             educationOptions:null,
             salaryRangeOptions:null,
-            date:'11-11-1111',
-            gender:'dsa',
-            marital:'dsa',
-            religion:'dsa',
-            work:'dsa',
-            education:'asd',
-            salary:'123',
+            date:'',
+            gender:'',
+            marital:'',
+            religion:'',
+            work:'',
+            education:'',
+            salary:'',
             username: '',
             password: '',
             confPassword: '',
@@ -132,61 +132,6 @@ export class Register extends Component {
         }).catch((error)=>{console.log(error)})
     }
 
-    handleUsername = (text) => {
-        this.setState({ username: text })
-    }
-    handlePassword = (text) => {
-        this.setState({ password: text })
-    }
-
-    handleConfPassword = (text) => {
-        this.setState({ confPassword: text })
-    }
-
-    handleEmail = (text) => {
-        this.setState({ email: text })
-    }
-
-    handlePhone = (text) => {
-        this.setState({ phone: text })
-    }
-
-    handleKTP = (text) => {
-        this.setState({ ktp: text })
-    }
-
-    handleAddress = (text) => {
-        this.setState({ address: text })
-    }
-
-    handleKTPAddress = (text) => {
-        this.setState({ ktpAddress: text })
-    }
-
-    handleProvince = (text) => {
-        this.setState({ province: text })
-    }
-
-    handleCity = (text) => {
-        this.setState({ city: text })
-    }
-
-    handleVillage = (text) => {
-        this.setState({ village: text })
-    }
-
-    handleDistrict = (text) => {
-        this.setState({ district: text })
-    }
-
-    handlePostalCode = (text) => {
-        this.setState({ postalCode: text })
-    }
-
-    handlePlaceOfBirth = (text) => {
-        this.setState({ placeOfBirth: text })
-    }
-
     render() {
         return (
             <Container>
@@ -196,14 +141,14 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Username</Label>
                                 <Input
-                                    onChangeText={this.handleUsername}
+                                    onChangeText={(text)=>this.setState({username: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Password</Label>
                                 <Input
-                                    onChangeText={this.handlePassword}
+                                    onChangeText={(text)=>this.setState({password: text})}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -211,7 +156,7 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Confirm Password</Label>
                                 <Input
-                                    onChangeText={this.handleConfPassword}
+                                    onChangeText={(text)=>this.setState({confPassword: text})}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -219,77 +164,77 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Email</Label>
                                 <Input
-                                    onChangeText={this.handleEmail}
+                                    onChangeText={(text)=>this.setState({email: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Phone Number</Label>
                                 <Input
-                                    onChangeText={this.handlePhone}
+                                    onChangeText={(text)=>this.setState({phone: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Number</Label>
                                 <Input
-                                    onChangeText={this.handleKTP}
+                                    onChangeText={(text)=>this.setState({ktp: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Address</Label>
                                 <Input
-                                    onChangeText={this.handleAddress}
+                                    onChangeText={(text)=>this.setState({address: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Address</Label>
                                 <Input
-                                    onChangeText={this.handleKTPAddress}
+                                    onChangeText={(text)=>this.setState({ktpAddress: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Province</Label>
                                 <Input
-                                    onChangeText={this.handleProvince}
+                                    onChangeText={(text)=>this.setState({province: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>City</Label>
                                 <Input
-                                    onChangeText={this.handleCity}
+                                    onChangeText={(text)=>this.setState({city: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Village</Label>
                                 <Input
-                                    onChangeText={this.handleVillage}
+                                    onChangeText={(text)=>this.setState({village: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>District</Label>
                                 <Input
-                                    onChangeText={this.handleDistrict}
+                                    onChangeText={(text)=>this.setState({district: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Postal Code</Label>
                                 <Input
-                                    onChangeText={this.handlePostalCode}
+                                    onChangeText={(text)=>this.setState({ postalCode: text})}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Place of Birth</Label>
                                 <Input
-                                    onChangeText={this.handlePlaceOfBirth}
+                                    onChangeText={(text)=>this.setState({placeOfBirth: text})}
                                 />
                             </Item>
 
@@ -304,7 +249,7 @@ export class Register extends Component {
                                     placeholder="Select Date"
                                     format="YYYY-MM-DD"
                                     minDate="1960-01-01"
-                                    maxDate="2000-12-31"
+                                    maxDate="2018-12-31"
                                     confirmBtnText="Confirm"
                                     cancelBtnText="Cancel"
                                     customStyles={{
