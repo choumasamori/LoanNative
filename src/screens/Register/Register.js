@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
+//var ImagePicker = require('react-native-image-picker');
+import ImagePicker from 'react-native-image-picker';
 
+var options = {
+    title: 'Pick an Image',
+    storageOptions: {
+        //skipBackup: true,
+        //returnBase64Image: true,
+    }
+};
 export class Register extends Component {
     constructor(props){
         super(props);
@@ -32,8 +41,16 @@ export class Register extends Component {
             village: '',
             district: '',
             postalCode: '',
-            placeOfBirth: ''
+            placeOfBirth: '',
+            imageData: null,
+            imageUri:null,
+            imageFilename:null,
+            imagePath: null,
+            imageType: null,
+            imageOrigUrl: null,
+            data: null
         }
+        this.pickImageHandler = this.pickImageHandler.bind(this);
     }
     componentDidMount(){
         fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
@@ -130,6 +147,41 @@ export class Register extends Component {
                 salaryRangeOptions:options,
             });
         }).catch((error)=>{console.log(error)})
+    }
+
+    pickImageHandler = () => {
+        ImagePicker.showImagePicker(options, (response) => {
+            if(response.didCancel){
+                console.log("User cancelled");
+            }
+            else if(response.error){
+                console.log("Error", response.error);
+            }
+            else{
+                let data = response.data;
+                let uri = response.uri;
+                let path = response.path;
+                let filename = response.fileName;
+                let type = response.type;
+                let origUrl = response.origURL;
+
+                this.setState({
+                    imageData: data,
+                    imageFilename: filename,
+                    imagePath: path,
+                    imageType: type,
+                    imageOrigUrl: origUrl,
+                    imageUri: uri,
+                    imageText: "Add Img Success"
+                });
+                console.log("imageData:"+this.state.imageData);
+                console.log("imageFilename:"+this.state.imageFilename);
+                console.log("imageUri:"+this.state.imageUri);
+                console.log("imagePath:"+this.state.imagePath);
+                console.log("imageType:"+this.state.imageType);
+                console.log("imageOrigUrl:"+this.state.imageOrigUrl);
+            }
+        });
     }
 
     render() {
@@ -356,6 +408,23 @@ export class Register extends Component {
                                     {this.state.salaryRangeOptions}
                                 </Picker>
                             </CardItem>
+
+                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                                <Text> Salary </Text>
+                            </Button>
+
+                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                                <Text> ktpScan </Text>
+                            </Button>
+
+                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                                <Text> npwpScan </Text>
+                            </Button>
+
+                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                                <Text> picture </Text>
+                            </Button>
+
                         </Form>
                     </Card>
                 </Content>
@@ -363,4 +432,5 @@ export class Register extends Component {
         );
     }
 }
+
 export default Register;
