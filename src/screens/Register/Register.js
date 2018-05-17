@@ -20,6 +20,14 @@ export class Register extends Component {
                      <Input />
                   </Item>
                   <Item floatingLabel>
+                    <Label>Password</Label>
+                      <Input secureTextEntry={true} />
+                  </Item>
+                  <Item floatingLabel>
+                    <Label>Confirm Password</Label>
+                      <Input secureTextEntry={true} />
+                  </Item>
+                  <Item floatingLabel>
                     <Label>Email</Label>
                      <Input />
                   </Item>
@@ -88,10 +96,7 @@ export class Register extends Component {
                       onDateChange={(date) => {this.setState({date: date})}}
                     />
                   </Item>
-                  <Item floatingLabel>
-                    <Label>Password</Label>
-                      <Input secureTextEntry={true} />
-                  </Item>
+                  
                 </Form>
               </Card>
             </Content>
