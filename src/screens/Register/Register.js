@@ -9,6 +9,10 @@ export class Register extends Component {
       date:'1996-10-15',
       gender:'male',
       marital:'married',
+      religion:'christianity',
+      work:'pns',
+      education:'sd',
+      salary:'<3000000',
     }
   }
   onValueChange1(value) {
@@ -19,6 +23,26 @@ export class Register extends Component {
   onValueChange2(value) {
     this.setState({
       marital: value
+    });
+  }
+  onValueChange3(value) {
+    this.setState({
+      religion: value
+    });
+  }
+  onValueChange4(value) {
+    this.setState({
+      work: value
+    });
+  }
+  onValueChange5(value) {
+    this.setState({
+      education: value
+    });
+  }
+  onValueChange6(value) {
+    this.setState({
+      salary: value
     });
   }
     render() {
@@ -129,6 +153,64 @@ export class Register extends Component {
                   >
               <Picker.Item label="Married" value="married" />
               <Picker.Item label="Not Married" value="notMarried" />
+              <Picker.Item label="Divorced" value="divorced" />
+            </Picker>
+            <Picker
+                    mode="dropdown"
+                    iosHeader="Religion"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.religion}
+                    onValueChange={this.onValueChange3.bind(this)}
+                  >
+              <Picker.Item label="Christianity" value="christianity" />
+              <Picker.Item label="Buddhist" value="buddhist" />
+              <Picker.Item label="Islamic" value="islamic" />
+              <Picker.Item label="Catholic" value="catholic" />
+              <Picker.Item label="Konghucu" value="konghucu" />
+            </Picker>
+            <Picker
+                    mode="dropdown"
+                    iosHeader="Work"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.work}
+                    onValueChange={this.onValueChange4.bind(this)}
+                  >
+              <Picker.Item label="PNS" value="pns" />
+              <Picker.Item label="BUMN" value="bumn" />
+              <Picker.Item label="Swasta" value="swasta" />
+              <Picker.Item label="Wiraswasta" value="wiraswasta" />
+              <Picker.Item label="Lain-lain" value="lainlain" />
+            </Picker>
+            <Picker
+                    mode="dropdown"
+                    iosHeader="education"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.education}
+                    onValueChange={this.onValueChange5.bind(this)}
+                  >
+              <Picker.Item label="SD" value="sd" />
+              <Picker.Item label="SMP" value="smp" />
+              <Picker.Item label="SMA" value="sma" />
+              <Picker.Item label="Diploma" value="diploma" />
+              <Picker.Item label="Sarjana" value="sarjana" />
+              <Picker.Item label="Master" value="master" />
+              <Picker.Item label="Doctoral" value="doctoral" />
+            </Picker>
+            <Picker
+                    mode="dropdown"
+                    iosHeader="salary"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.salary}
+                    onValueChange={this.onValueChange6.bind(this)}
+                  >
+              <Picker.Item label="< Rp.3.000.000" value="<3000000" />
+              <Picker.Item label="Rp 3.000.000 - Rp 5.000.000" value="3000000-5000000" />
+              <Picker.Item label="Rp 5.000.000 - Rp 10.000.000" value="5000000-10000000" />
+              <Picker.Item label="> Rp 10.000.000" value=">10000000" />
             </Picker>
                 </Form>
               </Card>
