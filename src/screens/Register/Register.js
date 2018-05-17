@@ -12,14 +12,16 @@ export class Register extends Component {
       workOptions:null,
       educationOptions:null,
       salaryRangeOptions:null,
-      date:'1996-10-15',
-      gender:'male',
-      marital:'married',
-      religion:'christianity',
-      work:'pns',
-      education:'sd',
-      salary:'<3000000',
+      date:'',
+      gender:'',
+      marital:'',
+      religion:'',
+      work:'',
+      education:'',
+      salary:'',
         username: '',
+        password: '',
+        confPassword: ''
     }
   }
   componentDidMount(){
@@ -122,6 +124,13 @@ export class Register extends Component {
     handleUsername = (text) => {
         this.setState({ username: text })
     }
+    handlePassword = (text) => {
+        this.setState({ password: text })
+    }
+
+    handleConfPassword = (text) => {
+        this.setState({ confPassword: text })
+    }
 
     render() {
       return (
@@ -135,58 +144,75 @@ export class Register extends Component {
                          onChangeText={this.handleUsername}
                      />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Password</Label>
-                      <Input secureTextEntry={true} />
+                      <Input
+                          onChangeText={this.handlePassword}
+                          secureTextEntry={true}
+                      />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Confirm Password</Label>
                       <Input secureTextEntry={true} />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Email</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Phone Number</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>KTP Number</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Address</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>KTP Address</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Province</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>City</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Village</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>District</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Postal Code</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Place of Birth</Label>
                      <Input />
                   </Item>
+
                   <Item>
                   <Left>
                     <Label>Date of Birth</Label>
