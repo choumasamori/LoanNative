@@ -28,9 +28,9 @@ export class Register extends Component {
 					'Content-Type': 'application/json',
 				}
 	}).then((results) => results.json()).then((data)=>{
-    let options =  data.genderOptions.map((option)=>{
+    let options =  data.genderOptions.map((option, i)=>{
       return(
-              <Picker.Item label={option} value={option} key={options}/>
+              <Picker.Item label={option} value={option} key={i}/>
       );
     });
     this.setState({
@@ -43,9 +43,9 @@ export class Register extends Component {
 					'Content-Type': 'application/json',
 				}
 	}).then((results) => results.json()).then((data)=>{
-    let options =  data.maritalOptions.map((option)=>{
+    let options =  data.maritalOptions.map((option, i)=>{
       return(
-              <Picker.Item label={option} value={option} key={options}/>
+              <Picker.Item label={option} value={option} key={i}/>
       );
     });
     this.setState({
@@ -58,9 +58,9 @@ export class Register extends Component {
       'Content-Type': 'application/json',
     }
 }).then((results) => results.json()).then((data)=>{
-let options =  data.religionOptions.map((option)=>{
+let options =  data.religionOptions.map((option, i)=>{
   return(
-          <Picker.Item label={option} value={option} key={options}/>
+          <Picker.Item label={option} value={option} key={i}/>
   );
 });
 this.setState({
@@ -73,9 +73,9 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 					'Content-Type': 'application/json',
 				}
 	}).then((results) => results.json()).then((data)=>{
-    let options =  data.workOptions.map((option)=>{
+    let options =  data.workOptions.map((option,i)=>{
       return(
-              <Picker.Item label={option} value={option} key={options}/>
+              <Picker.Item label={option} value={option} key={i}/>
       );
     });
     this.setState({
@@ -88,9 +88,9 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 					'Content-Type': 'application/json',
 				}
 	}).then((results) => results.json()).then((data)=>{
-    let options =  data.educationOptions.map((option)=>{
+    let options =  data.educationOptions.map((option,i)=>{
       return(
-              <Picker.Item label={option} value={option} key={options}/>
+              <Picker.Item label={option} value={option} key={i}/>
       );
     });
     this.setState({
@@ -103,9 +103,9 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 					'Content-Type': 'application/json',
 				}
 	}).then((results) => results.json()).then((data)=>{
-    let options =  data.salaryRangeOptions.map((option)=>{
+    let options =  data.salaryRangeOptions.map((option,i)=>{
       return(
-              <Picker.Item label={option} value={option} key={options}/>
+              <Picker.Item label={option} value={option} key={i}/>
       );
     });
     this.setState({
