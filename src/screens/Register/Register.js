@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
-import { Container, Item,Content, Form, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
+import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 
 export class Register extends Component {
   constructor(props){
     super(props);
     this.state={
-      date:'1996-10-15'
+      date:'1996-10-15',
+      gender:'male',
+      marital:'married',
     }
+  }
+  onValueChange1(value) {
+    this.setState({
+      gender: value
+    });
+  }
+  onValueChange2(value) {
+    this.setState({
+      marital: value
+    });
   }
     render() {
       return (
@@ -76,7 +88,7 @@ export class Register extends Component {
                       style={{width: 200}}
                       date={this.state.date}
                       mode="date"
-                      placeholder="select date"
+                      placeholder="Select Date"
                       format="YYYY-MM-DD"
                       minDate="1960-01-01"
                       maxDate="2000-12-31"
@@ -96,7 +108,28 @@ export class Register extends Component {
                       onDateChange={(date) => {this.setState({date: date})}}
                     />
                   </Item>
-                  
+                  <Picker
+                    mode="dropdown"
+                    iosHeader="Gender"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.gender}
+                    onValueChange={this.onValueChange1.bind(this)}
+                  >
+              <Picker.Item label="Male" value="male" />
+              <Picker.Item label="Female" value="female" />
+            </Picker>
+            <Picker
+                    mode="dropdown"
+                    iosHeader="Marital Status"
+                    iosIcon={<Icon name="ios-arrow-down-outline" />}
+                    style={{ width: undefined }}
+                    selectedValue={this.state.marital}
+                    onValueChange={this.onValueChange2.bind(this)}
+                  >
+              <Picker.Item label="Married" value="married" />
+              <Picker.Item label="Not Married" value="notMarried" />
+            </Picker>
                 </Form>
               </Card>
             </Content>
