@@ -21,36 +21,6 @@ export class Register extends Component {
       salary:'<3000000',
     }
   }
-  onValueChange1(value) {
-    this.setState({
-      gender: value
-    });
-  }
-  onValueChange2(value) {
-    this.setState({
-      marital: value
-    });
-  }
-  onValueChange3(value) {
-    this.setState({
-      religion: value
-    });
-  }
-  onValueChange4(value) {
-    this.setState({
-      work: value
-    });
-  }
-  onValueChange5(value) {
-    this.setState({
-      education: value
-    });
-  }
-  onValueChange6(value) {
-    this.setState({
-      salary: value
-    });
-  }
   componentDidMount(){
     fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 				method: 'GET',
@@ -243,7 +213,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.gender}
-                    onValueChange={this.onValueChange1.bind(this)}
+                    onValueChange={(value)=>this.setState({gender:value})}
                   >
               {this.state.genderOptions}
             </Picker>
@@ -258,7 +228,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.marital}
-                    onValueChange={this.onValueChange2.bind(this)}
+                    onValueChange={(value)=>this.setState({marital:value})}
                   >
               {this.state.maritalOptions}
             </Picker>
@@ -273,7 +243,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.religion}
-                    onValueChange={this.onValueChange3.bind(this)}
+                    onValueChange={(value)=>this.setState({religion:value})}
                   >
               {this.state.religionOptions}
             </Picker>
@@ -288,7 +258,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.work}
-                    onValueChange={this.onValueChange4.bind(this)}
+                    onValueChange={(value)=>this.setState({work:value})}
                   >
               {this.state.workOptions}
             </Picker>
@@ -303,7 +273,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.education}
-                    onValueChange={this.onValueChange5.bind(this)}
+                    onValueChange={(value)=>this.setState({education:value})}
                   >
               {this.state.educationOptions}
             </Picker>
@@ -318,7 +288,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                     style={{ width: undefined }}
                     selectedValue={this.state.salary}
-                    onValueChange={this.onValueChange6.bind(this)}
+                    onValueChange={(value)=>this.setState({salary:value})}
                   >
               {this.state.salaryRangeOptions}
             </Picker>
