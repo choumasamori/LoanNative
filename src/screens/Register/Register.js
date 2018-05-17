@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
+import Swiper from 'react-native-swiper';
+
 
 export class Register extends Component {
   constructor(props){
@@ -47,6 +49,7 @@ export class Register extends Component {
   }
     render() {
       return (
+          <Swiper>
           <Container>
             <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
               <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
@@ -162,7 +165,7 @@ export class Register extends Component {
                     style={{ width: undefined }}
                     selectedValue={this.state.marital}
                     onValueChange={this.onValueChange2.bind(this)}
-                  >
+                >
               <Picker.Item label="Married" value="married" />
               <Picker.Item label="Not Married" value="notMarried" />
               <Picker.Item label="Divorced" value="divorced" />
@@ -249,6 +252,7 @@ export class Register extends Component {
               </Card>
             </Content>
           </Container>
+          </Swiper>
       );
     }
   }
