@@ -3,6 +3,8 @@ import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, B
 import DatePicker from 'react-native-datepicker';
 //var ImagePicker = require('react-native-image-picker');
 import ImagePicker from 'react-native-image-picker';
+import axios from 'axios';
+
 
 var options = {
     title: 'Pick an Image',
@@ -51,6 +53,7 @@ export class Register extends Component {
             data: null
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
+        this.imgSalarySubmit = this.imgSalarySubmit.bind(this);
     }
     componentDidMount(){
         fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
@@ -147,6 +150,31 @@ export class Register extends Component {
                 salaryRangeOptions:options,
             });
         }).catch((error)=>{console.log(error)})
+    }
+
+    imgSalarySubmit() {
+        var data = new FormData();
+        data.append('file',
+            {
+                uri: this.state.imageUri,
+                name: this.state.imageFilename,
+                type: this.state.imageType}
+            );
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            timeout: 10000
+        }
+
+        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
+            .then(response => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log("Error " + error)
+            })
     }
 
     pickImageHandler = () => {
@@ -423,6 +451,11 @@ export class Register extends Component {
 
                             <Button title = "Pick Image" onPress = {this.pickImageHandler}>
                                 <Text> picture </Text>
+                            </Button>
+
+
+                            <Button  onPress={this.imgSalarySubmit}>
+                                <Text>Submit</Text>
                             </Button>
 
                         </Form>
