@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon} from 'native-base';
+import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 
 export class Register extends Component {
@@ -48,7 +48,7 @@ export class Register extends Component {
     render() {
       return (
           <Container>
-            <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%'}}>
+            <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
               <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                 <Form>
                   <Item floatingLabel>
@@ -108,6 +108,9 @@ export class Register extends Component {
                      <Input />
                   </Item>
                   <Item>
+                  <Left>
+                    <Label>Date of Birth</Label>
+                  </Left>
                   <DatePicker
                       style={{width: 200}}
                       date={this.state.date}
@@ -132,6 +135,10 @@ export class Register extends Component {
                       onDateChange={(date) => {this.setState({date: date})}}
                     />
                   </Item>
+                  <CardItem>
+                  <Left>
+                    <Label>Gender</Label>
+                  </Left>
                   <Picker
                     mode="dropdown"
                     iosHeader="Gender"
@@ -143,6 +150,11 @@ export class Register extends Component {
               <Picker.Item label="Male" value="male" />
               <Picker.Item label="Female" value="female" />
             </Picker>
+            </CardItem>
+            <CardItem>
+                  <Left>
+                    <Label>Marital Status</Label>
+                  </Left>
             <Picker
                     mode="dropdown"
                     iosHeader="Marital Status"
@@ -155,6 +167,11 @@ export class Register extends Component {
               <Picker.Item label="Not Married" value="notMarried" />
               <Picker.Item label="Divorced" value="divorced" />
             </Picker>
+            </CardItem>
+            <CardItem>
+                  <Left>
+                    <Label>Religion</Label>
+                  </Left>
             <Picker
                     mode="dropdown"
                     iosHeader="Religion"
@@ -169,6 +186,11 @@ export class Register extends Component {
               <Picker.Item label="Catholic" value="catholic" />
               <Picker.Item label="Konghucu" value="konghucu" />
             </Picker>
+            </CardItem>
+            <CardItem>
+                  <Left>
+                    <Label>Work</Label>
+                  </Left>
             <Picker
                     mode="dropdown"
                     iosHeader="Work"
@@ -183,6 +205,11 @@ export class Register extends Component {
               <Picker.Item label="Wiraswasta" value="wiraswasta" />
               <Picker.Item label="Lain-lain" value="lainlain" />
             </Picker>
+            </CardItem>
+            <CardItem>
+                  <Left>
+                    <Label>Education</Label>
+                  </Left>
             <Picker
                     mode="dropdown"
                     iosHeader="education"
@@ -199,6 +226,11 @@ export class Register extends Component {
               <Picker.Item label="Master" value="master" />
               <Picker.Item label="Doctoral" value="doctoral" />
             </Picker>
+            </CardItem>
+            <CardItem>
+                  <Left>
+                    <Label>Salary</Label>
+                  </Left>
             <Picker
                     mode="dropdown"
                     iosHeader="salary"
@@ -212,6 +244,7 @@ export class Register extends Component {
               <Picker.Item label="Rp 5.000.000 - Rp 10.000.000" value="5000000-10000000" />
               <Picker.Item label="> Rp 10.000.000" value=">10000000" />
             </Picker>
+            </CardItem>
                 </Form>
               </Card>
             </Content>
