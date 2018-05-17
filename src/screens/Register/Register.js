@@ -22,7 +22,17 @@ export class Register extends Component {
             username: '',
             password: '',
             confPassword: '',
-            email: ''
+            email: '',
+            phone: '',
+            ktp: '',
+            address: '',
+            ktpAddress: '',
+            province: '',
+            city: '',
+            village: '',
+            district: '',
+            postalCode: '',
+            placeOfBirth: ''
         }
     }
     componentDidMount(){
@@ -137,6 +147,46 @@ export class Register extends Component {
         this.setState({ email: text })
     }
 
+    handlePhone = (text) => {
+        this.setState({ phone: text })
+    }
+
+    handleKTP = (text) => {
+        this.setState({ ktp: text })
+    }
+
+    handleAddress = (text) => {
+        this.setState({ address: text })
+    }
+
+    handleKTPAddress = (text) => {
+        this.setState({ ktpAddress: text })
+    }
+
+    handleProvince = (text) => {
+        this.setState({ province: text })
+    }
+
+    handleCity = (text) => {
+        this.setState({ city: text })
+    }
+
+    handleVillage = (text) => {
+        this.setState({ village: text })
+    }
+
+    handleDistrict = (text) => {
+        this.setState({ district: text })
+    }
+
+    handlePostalCode = (text) => {
+        this.setState({ postalCode: text })
+    }
+
+    handlePlaceOfBirth = (text) => {
+        this.setState({ placeOfBirth: text })
+    }
+
     render() {
         return (
             <Container>
@@ -146,14 +196,14 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Username</Label>
                                 <Input
-
+                                    onChangeText={this.handleUsername}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Password</Label>
                                 <Input
-
+                                    onChangeText={this.handlePassword}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -161,7 +211,7 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Confirm Password</Label>
                                 <Input
-
+                                    onChangeText={this.handleConfPassword}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -169,58 +219,78 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>Email</Label>
                                 <Input
-
+                                    onChangeText={this.handleEmail}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Phone Number</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePhone}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Number</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleKTP}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Address</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleAddress}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Address</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleKTPAddress}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Province</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleProvince}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>City</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleCity}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Village</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleVillage}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>District</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleDistrict}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Postal Code</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePostalCode}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Place of Birth</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePlaceOfBirth}
+                                />
                             </Item>
 
                             <Item>
