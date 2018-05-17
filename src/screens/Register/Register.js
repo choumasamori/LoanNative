@@ -19,6 +19,7 @@ export class Register extends Component {
       work:'pns',
       education:'sd',
       salary:'<3000000',
+        username: '',
     }
   }
   componentDidMount(){
@@ -37,6 +38,7 @@ export class Register extends Component {
       genderOptions:options,
     });
   }).catch((error)=>{console.log(error)})
+
   fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 				method: 'GET',
 				headers: {
@@ -52,22 +54,24 @@ export class Register extends Component {
       maritalOptions:options,
     });
   }).catch((error)=>{console.log(error)})
+
   fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     }
-}).then((results) => results.json()).then((data)=>{
-let options =  data.religionOptions.map((option, i)=>{
-  return(
-          <Picker.Item label={option} value={option} key={i}/>
-  );
-});
-this.setState({
-  religionOptions:options,
-});
-}).catch((error)=>{console.log(error)})
-fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
+    }).then((results) => results.json()).then((data)=>{
+    let options =  data.religionOptions.map((option, i)=>{
+      return(
+              <Picker.Item label={option} value={option} key={i}/>
+      );
+    });
+    this.setState({
+      religionOptions:options,
+    });
+    }).catch((error)=>{console.log(error)})
+
+    fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -82,6 +86,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
       workOptions:options,
     });
   }).catch((error)=>{console.log(error)})
+
   fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
 				method: 'GET',
 				headers: {
@@ -113,6 +118,11 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
     });
   }).catch((error)=>{console.log(error)})
   }
+
+    handleUsername = (text) => {
+        this.setState({ username: text })
+    }
+
     render() {
       return (
           <Container>
@@ -121,7 +131,9 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                 <Form>
                   <Item floatingLabel>
                     <Label>Username</Label>
-                     <Input />
+                     <Input
+                         onChangeText={this.handleUsername}
+                     />
                   </Item>
                   <Item floatingLabel>
                     <Label>Password</Label>
