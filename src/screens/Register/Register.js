@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-import Swiper from 'react-native-swiper';
-
+import axios from 'axios';
 
 export class Register extends Component {
   constructor(props){
     super(props);
-    this.state={
-      date:'1996-10-15',
-      gender:'male',
-      marital:'married',
-      religion:'christianity',
-      work:'pns',
-      education:'sd',
-      salary:'<3000000',
+    this.state = {
+      date:'',
+      gender: [],
+      marital:'',
+      religion:'',
+      work:'',
+      education:'',
+      salary:'',
     }
   }
+
   onValueChange1(value) {
     this.setState({
       gender: value
@@ -47,118 +47,151 @@ export class Register extends Component {
       salary: value
     });
   }
+
+    async getOptions() {
+        axios.get('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options')
+            .then(response => response.json())
+            .then(data => {
+                let options = data.map((item) => {
+                    console.log(item.genderOptions);
+                })
+            })
+    }
+
+    componentWillMount() {
+      this.getOptions();
+    }
+
+
+
+
     render() {
       return (
-          <Swiper>
           <Container>
             <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
               <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                 <Form>
                   <Item floatingLabel>
-                    <Label>Username</Label>
+                    <Label>{this.state.gender}</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Password</Label>
                       <Input secureTextEntry={true} />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Confirm Password</Label>
                       <Input secureTextEntry={true} />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Email</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Phone Number</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>KTP Number</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Address</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>KTP Address</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Province</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>City</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Village</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>District</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Postal Code</Label>
                      <Input />
                   </Item>
+
                   <Item floatingLabel>
                     <Label>Place of Birth</Label>
                      <Input />
                   </Item>
+
                   <Item>
-                  <Left>
-                    <Label>Date of Birth</Label>
-                  </Left>
-                  <DatePicker
-                      style={{width: 200}}
-                      date={this.state.date}
-                      mode="date"
-                      placeholder="Select Date"
-                      format="YYYY-MM-DD"
-                      minDate="1960-01-01"
-                      maxDate="2000-12-31"
-                      confirmBtnText="Confirm"
-                      cancelBtnText="Cancel"
-                      customStyles={{
-                        dateIcon: {
-                          position: 'absolute',
-                          left: 0,
-                          top: 4,
-                          marginLeft: 0
-                        },
-                        dateInput: {
-                          marginLeft: 36
-                        }
-                      }}
-                      onDateChange={(date) => {this.setState({date: date})}}
-                    />
+                    <Left>
+                      <Label>Date of Birth</Label>
+                    </Left>
+                      <DatePicker
+                          style={{width: 200}}
+                          date={this.state.date}
+                          mode="date"
+                          placeholder="Select Date"
+                          format="YYYY-MM-DD"
+                          minDate="1960-01-01"
+                          maxDate="2018-12-31"
+                          confirmBtnText="Confirm"
+                          cancelBtnText="Cancel"
+                          customStyles={{
+                            dateIcon: {
+                              position: 'absolute',
+                              left: 0,
+                              top: 4,
+                              marginLeft: 0
+                            },
+                            dateInput: {
+                              marginLeft: 36
+                            }
+                          }}
+                          onDateChange={(date) => {this.setState({date: date})}}
+                        />
                   </Item>
+
                   <CardItem>
-                  <Left>
-                    <Label>Gender</Label>
-                  </Left>
-                  <Picker
-                    mode="dropdown"
-                    iosHeader="Gender"
-                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                    style={{ width: undefined }}
-                    selectedValue={this.state.gender}
-                    onValueChange={this.onValueChange1.bind(this)}
-                  >
-              <Picker.Item label="Male" value="male" />
-              <Picker.Item label="Female" value="female" />
-            </Picker>
-            </CardItem>
+                    <Left>
+                      <Label>Gender</Label>
+                    </Left>
+                      <Picker
+                        mode="dropdown"
+                        iosHeader="Gender"
+                        iosIcon={<Icon name="ios-arrow-down-outline" />}
+                        style={{ width: undefined }}
+                        selectedValue={this.state.gender}
+                        onValueChange={this.onValueChange1.bind(this)}
+                      >
+                      <Picker.Item label="Male" value="male" />
+                      <Picker.Item label="Female" value="female" />
+                      </Picker>
+                  </CardItem>
+
             <CardItem>
-                  <Left>
-                    <Label>Marital Status</Label>
-                  </Left>
-            <Picker
+                <Left>
+                  <Label>Marital Status</Label>
+                </Left>
+                <Picker
                     mode="dropdown"
                     iosHeader="Marital Status"
                     iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -166,11 +199,12 @@ export class Register extends Component {
                     selectedValue={this.state.marital}
                     onValueChange={this.onValueChange2.bind(this)}
                 >
-              <Picker.Item label="Married" value="married" />
-              <Picker.Item label="Not Married" value="notMarried" />
-              <Picker.Item label="Divorced" value="divorced" />
-            </Picker>
+                <Picker.Item label="Married" value="married" />
+                <Picker.Item label="Not Married" value="notMarried" />
+                <Picker.Item label="Divorced" value="divorced" />
+                </Picker>
             </CardItem>
+
             <CardItem>
                   <Left>
                     <Label>Religion</Label>
@@ -190,6 +224,7 @@ export class Register extends Component {
               <Picker.Item label="Konghucu" value="konghucu" />
             </Picker>
             </CardItem>
+
             <CardItem>
                   <Left>
                     <Label>Work</Label>
@@ -209,6 +244,7 @@ export class Register extends Component {
               <Picker.Item label="Lain-lain" value="lainlain" />
             </Picker>
             </CardItem>
+
             <CardItem>
                   <Left>
                     <Label>Education</Label>
@@ -230,6 +266,7 @@ export class Register extends Component {
               <Picker.Item label="Doctoral" value="doctoral" />
             </Picker>
             </CardItem>
+
             <CardItem>
                   <Left>
                     <Label>Salary</Label>
@@ -252,7 +289,6 @@ export class Register extends Component {
               </Card>
             </Content>
           </Container>
-          </Swiper>
       );
     }
   }
