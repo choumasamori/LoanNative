@@ -172,10 +172,7 @@ export class Register extends Component {
 
                                 />
                             </Item>
-                            {this.state.username}
-                            {this.state.password}
-                            {this.state.confPassword}
-                            {this.state.email}
+
                             <Item floatingLabel>
                                 <Label>Phone Number</Label>
                                 <Input />
