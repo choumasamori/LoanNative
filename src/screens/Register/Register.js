@@ -159,7 +159,7 @@ export class Register extends Component {
                 uri: this.state.imageUri,
                 name: this.state.imageFilename,
                 type: this.state.imageType}
-            );
+        );
 
         const config = {
             headers: {
