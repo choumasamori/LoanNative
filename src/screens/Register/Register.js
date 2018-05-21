@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
-import { tryRegisterImage } from "../../store/actions";
+import { tryRegisterImageSalary } from "../../store/actions";
+import { tryRegisterImageKtp } from "../../store/actions";
+import { tryRegisterImageNPWP } from "../../store/actions";
+import { tryRegisterImagePic } from "../../store/actions";
+
+import { tryRegisterData } from "../../store/actions";
 
 import { connect } from 'react-redux';
 
@@ -36,7 +41,7 @@ export class Register extends Component {
             confPassword: '',
             email: '',
             phone: '',
-            ktp: '',
+            ktpNumber: '',
             address: '',
             ktpAddress: '',
             province: '',
@@ -45,13 +50,17 @@ export class Register extends Component {
             district: '',
             postalCode: '',
             placeOfBirth: '',
+            workArea: '',
+            coupleName: '',
+            numDependts: '',
+            npwpNumber: '',
             imageData:'' ,
             imageUri:'',
             imageFilename:'',
             imagePath: null,
             imageType: '',
             imageOrigUrl: null,
-            data: null
+            data: null,
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
     }
@@ -158,13 +167,65 @@ export class Register extends Component {
             imageFilename: this.state.imageFilename,
             imageType: this.state.imageType
         };
-        this.props.onTryImageRegister(authData);
+        this.props.onTryImageRegisterSalary(authData);
+    }
+
+    imgKtpSubmit = () => {
+        const authData = {
+            imageUri: this.state.imageUri,
+            imageFilename: this.state.imageFilename,
+            imageType: this.state.imageType
+        };
+        this.props.onTryImageRegisterKtp(authData);
+    }
+
+    imgNPWPSubmit = () => {
+        const authData = {
+            imageUri: this.state.imageUri,
+            imageFilename: this.state.imageFilename,
+            imageType: this.state.imageType
+        };
+        this.props.onTryImageRegisterNPWP(authData);
+    }
+
+    imgPicSubmit = () => {
+        const authData = {
+            imageUri: this.state.imageUri,
+            imageFilename: this.state.imageFilename,
+            imageType: this.state.imageType
+        };
+        this.props.onTryImageRegisterPic(authData);
     }
 
     registerDataSubmit = () => {
         const authData = {
-            name: this.state.fullname
-        }
+            fullname: this.state.fullname,
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email,
+            phone: this.state.phone,
+            ktpNumber: this.state.email,
+            address: this.state.address,
+            ktpAddress: this.state.ktpAddress,
+            province: this.state.province,
+            city: this.state.city,
+            village: this.state.village,
+            district: this.state.district,
+            workArea: this.state.workArea,
+            coupleName: this.state.coupleName,
+            numDependts: this.state.numDependts,
+            npwpNumber: this.state.npwpNumber,
+            postalCode: this.state.postalCode,
+            placeOfBirth: this.state.placeOfBirth,
+            date: this.state.date,
+            gender: this.state.gender,
+            martial: this.state.martial,
+            religion: this.state.religion,
+            work: this.state.work,
+            education: this.state.education,
+            salary: this.state.salary,
+        };
+        this.props.onTryRegisterData(authData);
     }
 
     pickImageHandler = () => {
@@ -255,7 +316,7 @@ export class Register extends Component {
                             <Item floatingLabel>
                                 <Label>KTP Number</Label>
                                 <Input
-                                    onChangeText={(text)=>this.setState({ktp: text})}
+                                    onChangeText={(text)=>this.setState({ktpNumber: text})}
                                 />
                             </Item>
 
@@ -298,6 +359,34 @@ export class Register extends Component {
                                 <Label>District</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({district: text})}
+                                />
+                            </Item>
+
+                            <Item floatingLabel>
+                                <Label>Work Area</Label>
+                                <Input
+                                    onChangeText={(text)=>this.setState({workArea: text})}
+                                />
+                            </Item>
+
+                            <Item floatingLabel>
+                                <Label>Couple Name</Label>
+                                <Input
+                                    onChangeText={(text)=>this.setState({coupleName: text})}
+                                />
+                            </Item>
+
+                            <Item floatingLabel>
+                                <Label>Num Dependts</Label>
+                                <Input
+                                    onChangeText={(text)=>this.setState({numDependts: text})}
+                                />
+                            </Item>
+
+                            <Item floatingLabel>
+                                <Label>NPWP Number</Label>
+                                <Input
+                                    onChangeText={(text)=>this.setState({npwpNumber: text})}
                                 />
                             </Item>
 
@@ -452,11 +541,23 @@ export class Register extends Component {
 
 
                             <Button  onPress={ this.imgSalarySubmit }>
-                                <Text>Sent Image</Text>
+                                <Text>Sent Salary</Text>
                             </Button>
 
-                            <Button  onPress={ this.imgSalarySubmit }>
-                                <Text>Sent Data</Text>
+                            <Button  onPress={ this.imgKtpSubmit }>
+                                <Text>Sent KTP</Text>
+                            </Button>
+
+                            <Button  onPress={ this.imgNPWPSubmit }>
+                                <Text>Sent NPWP</Text>
+                            </Button>
+
+                            <Button  onPress={ this.imgPicSubmit }>
+                                <Text>Sent PIC</Text>
+                            </Button>
+
+                            <Button  onPress={ this.registerDataSubmit }>
+                                <Text>Sent All Data</Text>
                             </Button>
 
                         </Form>
@@ -470,7 +571,11 @@ export class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTryImageRegister: (authData) => dispatch(tryRegisterImage(authData))
+        onTryImageRegisterSalary: (authData) => dispatch(tryRegisterImageSalary(authData)),
+        onTryImageRegisterKtp: (authData) => dispatch(tryRegisterImageKtp(authData)),
+        onTryImageRegisterNPWP: (authData) => dispatch(tryRegisterImageNPWP(authData)),
+        onTryImageRegisterPic: (authData) => dispatch(tryRegisterImagePic(authData)),
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
     };
 };
 
@@ -480,4 +585,4 @@ const mapDispatchToPropsData = dispatch => {
     };
 };
 
-export default connect(mapDispatchToPropsData, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(Register);
