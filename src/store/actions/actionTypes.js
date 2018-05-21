@@ -1,0 +1,5 @@
+export const AUTH_LOGIN = "AUTH_LOGIN";
+export const AUTH_REGISTER = "AUTH_REGISTER";
+
+export const AUTH_SET_TOKEN = "AUTH_SET_TOKEN";
+export const AUTH_REMOVE_TOKEN = "AUTH_REMOVE_TOKEN";

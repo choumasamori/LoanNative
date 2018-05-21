@@ -13,36 +13,61 @@ import java.util.List;
 
 import com.imagepicker.ImagePickerPackage;
 
-public class MainApplication extends Application implements ReactApplication {
+import com.reactnativenavigation.NavigationApplication;
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+public class MainApplication extends NavigationApplication  {
+
+  // private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+  //   @Override
+  //   public boolean getUseDeveloperSupport() {
+  //     return BuildConfig.DEBUG;
+  //   }
+
+  //   @Override
+  //   protected List<ReactPackage> getPackages() {
+  //     return Arrays.<ReactPackage>asList(
+  //           new MainReactPackage(),
+  //           new VectorIconsPackage()
+  //     );
+  //   }
+
+  //   @Override
+  //   protected String getJSMainModuleName() {
+  //     return "index";
+  //   }
+  // };
+
+  // @Override
+  // public ReactNativeHost getReactNativeHost() {
+  //   return mReactNativeHost;
+  // }
+
+  // @Override
+  // public void onCreate() {
+  //   super.onCreate();
+  //   SoLoader.init(this, /* native exopackage */ false);
+  // }
+
+   @Override
+     public boolean isDebug() {
+         // Make sure you are using BuildConfig from your own application
+         return BuildConfig.DEBUG;
+     }
+
+     protected List<ReactPackage> getPackages() {
+         return Arrays.<ReactPackage>asList(
+           new MainReactPackage(),
+           new ImagePickerPackage()
+         );
+     }
+
+     @Override
+     public List<ReactPackage> createAdditionalReactPackages() {
+         return getPackages();
+     }
 
     @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new ImagePickerPackage()
-      );
-    }
-
-    @Override
-    protected String getJSMainModuleName() {
+    public String getJSMainModuleName() {
       return "index";
     }
-  };
-
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
-  }
-
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-  }
 }

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-//var ImagePicker = require('react-native-image-picker');
 import ImagePicker from 'react-native-image-picker';
-import axios from 'axios';
+import { tryRegisterImage } from "../../store/actions";
 
+import { connect } from 'react-redux';
 
 var options = {
-    title: 'Pick an Image',
-    storageOptions: {
-        //skipBackup: true,
-        //returnBase64Image: true,
-    }
+    title: 'Pick an Image'
 };
 export class Register extends Component {
+    static navigatorStyle = {
+        navBarHidden: true,
+    }
+
     constructor(props){
         super(props);
         this.state={
@@ -23,6 +23,7 @@ export class Register extends Component {
             workOptions:null,
             educationOptions:null,
             salaryRangeOptions:null,
+            fullname: '',
             date:'',
             gender:'',
             marital:'',
@@ -44,16 +45,15 @@ export class Register extends Component {
             district: '',
             postalCode: '',
             placeOfBirth: '',
-            imageData: null,
-            imageUri:null,
-            imageFilename:null,
+            imageData:'' ,
+            imageUri:'',
+            imageFilename:'',
             imagePath: null,
-            imageType: null,
+            imageType: '',
             imageOrigUrl: null,
             data: null
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
-        this.imgSalarySubmit = this.imgSalarySubmit.bind(this);
     }
     componentDidMount(){
         fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
@@ -152,29 +152,19 @@ export class Register extends Component {
         }).catch((error)=>{console.log(error)})
     }
 
-    imgSalarySubmit() {
-        var data = new FormData();
-        data.append('file',
-            {
-                uri: this.state.imageUri,
-                name: this.state.imageFilename,
-                type: this.state.imageType}
-        );
+    imgSalarySubmit = () => {
+        const authData = {
+            imageUri: this.state.imageUri,
+            imageFilename: this.state.imageFilename,
+            imageType: this.state.imageType
+        };
+        this.props.onTryImageRegister(authData);
+    }
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            timeout: 10000
+    registerDataSubmit = () => {
+        const authData = {
+            name: this.state.fullname
         }
-
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
-            .then(response => {
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log("Error " + error)
-            })
     }
 
     pickImageHandler = () => {
@@ -218,6 +208,13 @@ export class Register extends Component {
                 <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
                     <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                         <Form>
+                            <Item floatingLabel>
+                                <Label>Full Name</Label>
+                                <Input
+                                    onChangeText={(text)=>this.setState({fullname: text})}
+                                />
+                            </Item>
+
                             <Item floatingLabel>
                                 <Label>Username</Label>
                                 <Input
@@ -454,8 +451,12 @@ export class Register extends Component {
                             </Button>
 
 
-                            <Button  onPress={this.imgSalarySubmit}>
-                                <Text>Submit</Text>
+                            <Button  onPress={ this.imgSalarySubmit }>
+                                <Text>Sent Image</Text>
+                            </Button>
+
+                            <Button  onPress={ this.imgSalarySubmit }>
+                                <Text>Sent Data</Text>
                             </Button>
 
                         </Form>
@@ -466,4 +467,17 @@ export class Register extends Component {
     }
 }
 
-export default Register;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onTryImageRegister: (authData) => dispatch(tryRegisterImage(authData))
+    };
+};
+
+const mapDispatchToPropsData = dispatch => {
+    return {
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
+    };
+};
+
+export default connect(mapDispatchToPropsData, mapDispatchToProps)(Register);
