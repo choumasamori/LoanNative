@@ -1,82 +1,34 @@
 import React, { Component } from 'react';
-import { Image, Alert } from 'react-native';
+import { Image } from 'react-native';
 import { Container, Content, Item, Form, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
+import Register from './../Register/Register';
+
+import { connect } from 'react-redux';
+import { tryLogin } from "../../store/actions";
 
 const ACCESS_TOKEN = '';
 
 class Login extends Component {
+    static navigatorStyle = {
+        navBarHidden: true,
+    }
+
     constructor(props){
         super(props);
 
         this.state = {
             username: "",
             password: "",
-            error: "",
         }
     }
 
-    handleUsername = (text) => {
-        this.setState({ username: text })
+    authHandleLogin = () => {
+        const authData = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        this.props.onTryLogin(authData);
     }
-
-    handlePassword = (text) => {
-        this.setState({ password: text })
-    }
-
-    async storeToken(accessToken){
-        try{
-            await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
-        }catch(error){
-            console.log("something went wrong store token login");
-        }
-    }
-
-    async onLoginPressed() {
-        try {
-            let response = await fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'username': this.state.username,
-                    'password': this.state.password,
-                })
-            });
-            let res = await response.text();
-            if(response.status >= 200 && response.status < 300) {
-                this.setState({ error: "" });
-                let accessToken = res;
-                this.storeToken(accessToken);
-                console.log("res token login: " + accessToken);
-                this.props.navigation.navigate('Dashboard');
-            } else {
-                let error = res;
-                throw error;
-            }
-        } catch (error) {
-            //this.setState({error: error});
-            if(error.status === 401) {
-                this.setState({
-                    error: 'Wrong Username/Password'
-                })
-            } else {
-                this.setState({
-                    error: 'Wrong Username/Password'
-                })
-            }
-            Alert.alert(
-                'Warning',
-                this.state.error,
-                [
-                    {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ],
-                { cancelable: false }
-            )
-            console.log("error " + error);
-        }
-    }
-
 
     render() {
       return (
@@ -89,20 +41,21 @@ class Login extends Component {
                         <Item floatingLabel>
                         <Label>Username/Email/Phone Number</Label>
                             <Input
-                                onChangeText={ this.handleUsername}
+                                onChangeText={(text)=>this.setState({username: text})}
                             />
                         </Item>
 
                         <Item floatingLabel>
                         <Label>Password</Label>
                             <Input
-                                onChangeText={ this.handlePassword}
+                                onChangeText={(text)=>this.setState({password: text})}
                                 secureTextEntry={true}
                             />
                         </Item>
                     </Form>
+
                     <CardItem>
-                       <Button rounded full onPress={ this.onLoginPressed.bind(this)} style={{backgroundColor:'purple'}}>
+                       <Button rounded full onPress={ this.authHandleLogin } style={{backgroundColor:'purple'}}>
                              <Text>Log In</Text>
                       </Button>
                     </CardItem>
@@ -111,7 +64,14 @@ class Login extends Component {
                             <Text note onPress={()=>this.props.navigation.navigate('Forgot')}>Forgot Your Password ?</Text>
                             </Left>
                            <Right>
-                            <Text note onPress={()=>this.props.navigation.navigate('Register')}>Create New Account</Text>
+                            <Text note onPress = {
+                                () => this.props.navigator.push(
+                                    {
+                                        screen: 'KreditPro.Register',
+                                    }
+                                )
+                            }
+                            > Create New Account</Text>
                             </Right>
                       </CardItem>
             </Card>
@@ -120,4 +80,11 @@ class Login extends Component {
       );
     }
   }
-  export default Login;
+
+  const mapDispatchToProps = dispatch => {
+    return {
+        onTryLogin: (authData) => dispatch(tryLogin(authData))
+    };
+  };
+
+  export default connect(null, mapDispatchToProps)(Login);
