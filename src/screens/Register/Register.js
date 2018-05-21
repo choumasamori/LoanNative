@@ -122,14 +122,14 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                             <Item floatingLabel>
                                 <Label>Username</Label>
                                 <Input
-
+                                    onChangeText={this.handleUsername}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Password</Label>
                                 <Input
-
+                                    onChangeText={this.handlePassword}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -137,7 +137,7 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                             <Item floatingLabel>
                                 <Label>Confirm Password</Label>
                                 <Input
-
+                                    onChangeText={this.handleConfPassword}
                                     secureTextEntry={true}
                                 />
                             </Item>
@@ -145,58 +145,78 @@ fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
                             <Item floatingLabel>
                                 <Label>Email</Label>
                                 <Input
-
+                                    onChangeText={this.handleEmail}
                                 />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Phone Number</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePhone}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Number</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleKTP}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Address</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleAddress}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>KTP Address</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleKTPAddress}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Province</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleProvince}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>City</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleCity}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Village</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleVillage}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>District</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handleDistrict}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Postal Code</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePostalCode}
+                                />
                             </Item>
 
                             <Item floatingLabel>
                                 <Label>Place of Birth</Label>
-                                <Input />
+                                <Input
+                                    onChangeText={this.handlePlaceOfBirth}
+                                />
                             </Item>
 
                             <Item>
