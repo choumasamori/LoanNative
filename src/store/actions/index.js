@@ -1,5 +1,4 @@
 export { tryLogin } from './login';
 export {
-    tryRegisterData, tryRegisterImageSalary,
-    tryRegisterImageKtp, tryRegisterImageNPWP, tryRegisterImagePic
+    tryRegisterData, tryRegisterImage
 } from './registerImage';

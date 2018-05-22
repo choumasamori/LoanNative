@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
-import { tryRegisterImageSalary } from "../../store/actions";
-import { tryRegisterImageKtp } from "../../store/actions";
-import { tryRegisterImageNPWP } from "../../store/actions";
-import { tryRegisterImagePic } from "../../store/actions";
+import { tryRegisterImage } from "../../store/actions";
 
 import { tryRegisterData } from "../../store/actions";
 
@@ -54,13 +51,22 @@ export class Register extends Component {
             coupleName: '',
             numDependts: '',
             npwpNumber: '',
-            imageData:'' ,
-            imageUri:'',
-            imageFilename:'',
-            imagePath: null,
-            imageType: '',
-            imageOrigUrl: null,
-            data: null,
+
+            imageFilenameSalary: '',
+            imageTypeSalary: '',
+            imageUriSalary: '',
+
+            imageFilenameKtp: '',
+            imageTypeKtp: '',
+            imageUriKtp: '',
+
+            imageFilenameNpwp: '',
+            imageTypeNpwp: '',
+            imageUriNpwp: '',
+
+            imageFilenamePic: '',
+            imageTypePic: '',
+            imageUriPic: '',
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
     }
@@ -161,40 +167,28 @@ export class Register extends Component {
         }).catch((error)=>{console.log(error)})
     }
 
-    imgSalarySubmit = () => {
-        const authData = {
-            imageUri: this.state.imageUri,
-            imageFilename: this.state.imageFilename,
-            imageType: this.state.imageType
+    RegisterImage = () => {
+        const authData1 = {
+            imageFilenameSalary: this.state.imageFilenameSalary,
+            imageTypeSalary: this.state.imageTypeSalary,
+            imageUriSalary: this.state.imageUriSalary
         };
-        this.props.onTryImageRegisterSalary(authData);
-    }
-
-    imgKtpSubmit = () => {
-        const authData = {
-            imageUri: this.state.imageUri,
-            imageFilename: this.state.imageFilename,
-            imageType: this.state.imageType
+        const authData2 = {
+            imageFilenameKtp: this.state.imageFilenameKtp,
+            imageTypeKtp: this.state.imageTypeKtp,
+            imageUriKtp: this.state.imageUriKtp
         };
-        this.props.onTryImageRegisterKtp(authData);
-    }
-
-    imgNPWPSubmit = () => {
-        const authData = {
-            imageUri: this.state.imageUri,
-            imageFilename: this.state.imageFilename,
-            imageType: this.state.imageType
+        const authData3 = {
+            imageFilenameNpwp: this.state.imageFilenameNpwp,
+            imageTypeNpwp: this.state.imageTypeNpwp,
+            imageUriNpwp: this.state.imageUriNpwp
         };
-        this.props.onTryImageRegisterNPWP(authData);
-    }
-
-    imgPicSubmit = () => {
-        const authData = {
-            imageUri: this.state.imageUri,
-            imageFilename: this.state.imageFilename,
-            imageType: this.state.imageType
+        const authData4 = {
+            imageFilenamePic: this.state.imageFilenamePic,
+            imageTypePic: this.state.imageTypePic,
+            imageUriPic: this.state.imageUriPic
         };
-        this.props.onTryImageRegisterPic(authData);
+        this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
 
     registerDataSubmit = () => {
@@ -228,39 +222,100 @@ export class Register extends Component {
         this.props.onTryRegisterData(authData);
     }
 
-    pickImageHandler = () => {
-        ImagePicker.showImagePicker(options, (response) => {
-            if(response.didCancel){
-                console.log("User cancelled");
-            }
-            else if(response.error){
-                console.log("Error", response.error);
-            }
-            else{
-                let data = response.data;
-                let uri = response.uri;
-                let path = response.path;
-                let filename = response.fileName;
-                let type = response.type;
-                let origUrl = response.origURL;
+    pickImageHandler = (image) => {
+        if(image === 1) {
 
-                this.setState({
-                    imageData: data,
-                    imageFilename: filename,
-                    imagePath: path,
-                    imageType: type,
-                    imageOrigUrl: origUrl,
-                    imageUri: uri,
-                    imageText: "Add Img Success"
-                });
-                console.log("imageData:"+this.state.imageData);
-                console.log("imageFilename:"+this.state.imageFilename);
-                console.log("imageUri:"+this.state.imageUri);
-                console.log("imagePath:"+this.state.imagePath);
-                console.log("imageType:"+this.state.imageType);
-                console.log("imageOrigUrl:"+this.state.imageOrigUrl);
-            }
-        });
+            ImagePicker.showImagePicker(options, (response) => {
+                if(response.didCancel){
+                    console.log("User cancelled");
+                }
+                else if(response.error){
+                    console.log("Error", response.error);
+                }
+                else{
+                    let data = response.data;
+                    let filename = response.fileName;
+                    let type = response.type;
+                    let uri = response.uri;
+
+                    this.setState({
+                        imageFilenameSalary: filename,
+                        imageTypeSalary: type,
+                        imageUriSalary: uri,
+                    });
+                    console.log("imageData salary : "+data);
+                }
+            });
+        } else if (image === 2) {
+
+            ImagePicker.showImagePicker(options, (response) => {
+                if(response.didCancel){
+                    console.log("User cancelled");
+                }
+                else if(response.error){
+                    console.log("Error", response.error);
+                }
+                else{
+                    let data = response.data;
+                    let filename = response.fileName;
+                    let type = response.type;
+                    let uri = response.uri;
+
+                    this.setState({
+                        imageFilenameKtp: filename,
+                        imageTypeKtp: type,
+                        imageUriKtp: uri,
+                    });
+                    console.log("imageData ktp : "+data);
+                }
+            });
+        } else if (image === 3) {
+
+            ImagePicker.showImagePicker(options, (response) => {
+                if(response.didCancel){
+                    console.log("User cancelled");
+                }
+                else if(response.error){
+                    console.log("Error", response.error);
+                }
+                else{
+                    let data = response.data;
+                    let filename = response.fileName;
+                    let type = response.type;
+                    let uri = response.uri;
+
+                    this.setState({
+                        imageFilenameNpwp: filename,
+                        imageTypeNpwp: type,
+                        imageUriNpwp: uri,
+                    });
+                    console.log("imageData npwp : "+data);
+                }
+            });
+        } else if (image === 4) {
+
+            ImagePicker.showImagePicker(options, (response) => {
+                if(response.didCancel){
+                    console.log("User cancelled");
+                }
+                else if(response.error){
+                    console.log("Error", response.error);
+                }
+                else{
+                    let data = response.data;
+                    let filename = response.fileName;
+                    let type = response.type;
+                    let uri = response.uri;
+
+                    this.setState({
+                        imageFilenamePic: filename,
+                        imageTypePic: type,
+                        imageUriPic: uri,
+                    });
+                    console.log("imageData pic : "+data);
+                }
+            });
+        }
     }
 
     render() {
@@ -463,7 +518,6 @@ export class Register extends Component {
                                 >
                                     {this.state.maritalOptions}
                                 </Picker>
-                                <Text>{this.state.marital}</Text>
                             </CardItem>
 
 
@@ -528,37 +582,25 @@ export class Register extends Component {
                                 </Picker>
                             </CardItem>
 
-                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                            <Button title = "Pick Image Salary" onPress={()=>this.pickImageHandler(1)}>
                                 <Text> Salary </Text>
                             </Button>
 
-                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                            <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
                                 <Text> ktpScan </Text>
                             </Button>
 
-                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                            <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
                                 <Text> npwpScan </Text>
                             </Button>
 
-                            <Button title = "Pick Image" onPress = {this.pickImageHandler}>
+                            <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
                                 <Text> picture </Text>
                             </Button>
 
 
-                            <Button  onPress={ this.imgSalarySubmit }>
-                                <Text>Sent Salary</Text>
-                            </Button>
-
-                            <Button  onPress={ this.imgKtpSubmit }>
-                                <Text>Sent KTP</Text>
-                            </Button>
-
-                            <Button  onPress={ this.imgNPWPSubmit }>
-                                <Text>Sent NPWP</Text>
-                            </Button>
-
-                            <Button  onPress={ this.imgPicSubmit }>
-                                <Text>Sent PIC</Text>
+                            <Button  onPress={ this.RegisterImage }>
+                                <Text>Sent All Image</Text>
                             </Button>
 
                             <Button  onPress={ this.registerDataSubmit }>
@@ -576,18 +618,10 @@ export class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTryImageRegisterSalary: (authData) => dispatch(tryRegisterImageSalary(authData)),
-        onTryImageRegisterKtp: (authData) => dispatch(tryRegisterImageKtp(authData)),
-        onTryImageRegisterNPWP: (authData) => dispatch(tryRegisterImageNPWP(authData)),
-        onTryImageRegisterPic: (authData) => dispatch(tryRegisterImagePic(authData)),
+        onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
         onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
     };
 };
 
-const mapDispatchToPropsData = dispatch => {
-    return {
-        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
-    };
-};
 
 export default connect(null, mapDispatchToProps)(Register);

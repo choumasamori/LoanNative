@@ -2,19 +2,6 @@ import React, { Component } from 'react';
 import {Alert} from 'react-native';
 import axios from "axios/index";
 
-
-class RegisterImage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            urlSalary: '',
-            urlKTP: '',
-            urlNPWP: '',
-            urlPic: ''
-        }
-    }
-}
-
 const initialState = {
     urlSalary: '',
     urlKTP: '',
@@ -24,14 +11,42 @@ const initialState = {
 
 
 
-export const tryRegisterImageSalary = (authData) => {
+export const tryRegisterImage = (authData1, authData2, authData3, authData4) => {
     return dispatch => {
-        var data = new FormData();
-        data.append('file',
+        var data1 = new FormData();
+        var data2 = new FormData();
+        var data3 = new FormData();
+        var data4 = new FormData();
+
+        data1.append('file',
             {
-                uri: authData.imageUri,
-                name: authData.imageFilename,
-                type: authData.imageType
+                uri: authData1.imageUriSalary,
+                name: authData1.imageFilenameSalary,
+                type: authData1.imageTypeSalary
+            }
+        )
+
+        data2.append('file',
+            {
+                uri: authData2.imageUriKtp,
+                name: authData2.imageFilenameKtp,
+                type: authData2.imageTypeKtp
+            }
+        )
+
+        data3.append('file',
+            {
+                uri: authData3.imageUriNpwp,
+                name: authData3.imageFilenameNpwp,
+                type: authData3.imageTypeNpwp
+            }
+        )
+
+        data4.append('file',
+            {
+                uri: authData4.imageUriPic,
+                name: authData4.imageFilenamePic,
+                type: authData4.imageTypePic
             }
         )
 
@@ -42,111 +57,48 @@ export const tryRegisterImageSalary = (authData) => {
             timeout: 10000
         }
 
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
+        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data1, config)
             .then(response => {
-                alert("uplod img salary sukses");
                 //console.log(response)
                 console.log("ini url img salary " + response.data.url);
                 initialState.urlSalary = response.data.url;
             })
             .catch((error) => {
-                alert("uplod img fail");
+                alert("uplod img fail salary");
                 console.log("Error " + error)
             })
-    };
-}
 
-export const tryRegisterImageKtp = (authData) => {
-    return dispatch => {
-        var data = new FormData();
-        data.append('file',
-            {
-                uri: authData.imageUri,
-                name: authData.imageFilename,
-                type: authData.imageType
-            }
-        )
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            timeout: 10000
-        }
-
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
+        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data2, config)
             .then(response => {
-                alert("uplod img ktp sukses");
                 //console.log(response)
                 console.log("ini url img ktp " + response.data.url);
                 initialState.urlKTP = response.data.url;
             })
             .catch((error) => {
-                alert("uplod img fail");
+                alert("uplod img fail ktp");
                 console.log("Error " + error)
             })
-    };
-}
 
-export const tryRegisterImageNPWP = (authData) => {
-    return dispatch => {
-        var data = new FormData();
-        data.append('file',
-            {
-                uri: authData.imageUri,
-                name: authData.imageFilename,
-                type: authData.imageType
-            }
-        )
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            timeout: 10000
-        }
-
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
+        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data3, config)
             .then(response => {
-                alert("uplod img npwp sukses");
                 //console.log(response)
                 console.log("ini url img npwp " + response.data.url);
                 initialState.urlNPWP = response.data.url;
             })
             .catch((error) => {
-                alert("uplod img fail");
+                alert("uplod img fail npwp");
                 console.log("Error " + error)
             })
-    };
-}
 
-export const tryRegisterImagePic = (authData) => {
-    return dispatch => {
-        var data = new FormData();
-        data.append('file',
-            {
-                uri: authData.imageUri,
-                name: authData.imageFilename,
-                type: authData.imageType
-            }
-        )
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            timeout: 10000
-        }
-
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data, config)
+        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data4, config)
             .then(response => {
-                alert("uplod img picture sukses");
+                alert("success sent all image");
                 //console.log(response)
                 console.log("ini url img pic " + response.data.url);
                 initialState.urlPic = response.data.url;
             })
             .catch((error) => {
-                alert("uplod img fail");
+                alert("uplod img fail pic");
                 console.log("Error " + error)
             })
     };
