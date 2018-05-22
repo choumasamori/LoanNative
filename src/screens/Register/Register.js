@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-import ImagePicker from 'react-native-image-picker'
+import ImagePicker from 'react-native-image-picker';
+import { tryRegisterImage } from "../../store/actions";
 
-import { tryRegisterImage ,tryRegisterData} from "../../store/actions";
+import { tryRegisterData } from "../../store/actions";
 
 import { Spinner } from './../../components/common/index';
 
 
 import { connect } from 'react-redux';
-
-
 
 var options = {
     title: 'Pick an Image'
@@ -29,7 +28,7 @@ export class Register extends Component {
             workOptions:null,
             educationOptions:null,
             salaryRangeOptions:null,
-            fullname: '',
+            fullname: 'asw',
             date:'',
             gender:'Pria',
             marital:'Belum Menikah',
@@ -37,24 +36,24 @@ export class Register extends Component {
             work:'PNS',
             education:'SD',
             salary:'< Rp 3.000.000',
-            username: '',
-            password: '',
-            confPassword: '',
-            email: '',
-            phone: '',
-            ktpNumber: '',
-            address: '',
-            ktpAddress: '',
-            province: '',
-            city: '',
-            village: '',
-            district: '',
-            postalCode: '',
-            placeOfBirth: '',
-            workArea: '',
-            coupleName: '',
-            numDependts: '',
-            npwpNumber: '',
+            username: 'asw',
+            password: 'asw',
+            confPassword: 'asw',
+            email: 'asw@m.com',
+            phone: '321123',
+            ktpNumber: '32112',
+            address: 'dsadsa',
+            ktpAddress: 'dsaeq',
+            province: 'dsadqwe',
+            city: 'dsaq',
+            village: 'dsae',
+            district: 'dsae',
+            postalCode: '123',
+            placeOfBirth: 'dsad',
+            workArea: 'adsa',
+            coupleName: 'dsas',
+            numDependts: '12',
+            npwpNumber: '12321',
 
             imageFilenameSalary: '',
             imageTypeSalary: '',
@@ -71,10 +70,14 @@ export class Register extends Component {
             imageFilenamePic: '',
             imageTypePic: '',
             imageUriPic: '',
+
+            isLoad: false
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
     }
+
     componentDidMount(){
+
         fetch('http://wf.dev.neo-fusion.com/tdfp2p/ws/sys/options', {
             method: 'GET',
             headers: {
@@ -83,7 +86,6 @@ export class Register extends Component {
         }).then((results) => results.json()).then((data)=>{
             let options =  data.genderOptions.map((option, i)=>{
                 return(
-                    
                     <Picker.Item label={option} value={option} key={i}/>
                 );
             });
@@ -195,10 +197,7 @@ export class Register extends Component {
         };
         this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
-    sendAllData = () =>{
-        this.RegisterImage();
-        this.registerDataSubmit();
-    }
+
     registerDataSubmit = () => {
         const authData = {
             fullname: this.state.fullname,
@@ -226,15 +225,10 @@ export class Register extends Component {
             work: this.state.work,
             education: this.state.education,
             salary: this.state.salary,
-
         };
         this.props.onTryRegisterData(authData);
     }
 
-    sentAllData = () => {
-        this.RegisterImage();
-        this.registerDataSubmit();
-    }
 
     pickImageHandler = (image) => {
         if(image === 1) {
@@ -247,6 +241,7 @@ export class Register extends Component {
                     console.log("Error", response.error);
                 }
                 else{
+                    console.log(response);
                     let data = response.data;
                     let filename = response.fileName;
                     let type = response.type;
@@ -256,9 +251,14 @@ export class Register extends Component {
                         imageFilenameSalary: filename,
                         imageTypeSalary: type,
                         imageUriSalary: uri,
+                        isLoad: true
                     });
+
                     console.log("imageData salary : "+data);
                 }
+                // if(response.data !== null) {
+                //     this.setState({ isLoad: false })
+                // }
             });
         } else if (image === 2) {
 
@@ -332,6 +332,11 @@ export class Register extends Component {
         }
     }
 
+    sentAllData = () => {
+        this.RegisterImage();
+        this.registerDataSubmit();
+    }
+
 
     render() {
         let RegisterButton = (
@@ -350,12 +355,26 @@ export class Register extends Component {
             <Button  onPress={ this.registerDataSubmit }>
                 <Text>Sent All Data</Text>
             </Button>
-        )
+        );
+
+        let salaryButton = (
+            <Button title = "Pick Image Salary" onPress={()=>this.pickImageHandler(1)}>
+                <Text> Salary </Text>
+            </Button>
+        );
+
+        if(this.state.isLoad === false) {
+            { salaryButton }
+        } else if(this.state.isLoad === true){
+            salaryButton = <Spinner />
+        }
 
         if(this.props.isLoadingImage) {
             sentAllImage = <Spinner />
         } else if (this.props.isLoadingData) {
             sentAllData = <Spinner />
+        } else if (this.props.isLoadingRegister){
+            //RegisterButton = <Spinner />
         }
 
         return (
@@ -509,7 +528,7 @@ export class Register extends Component {
                                     placeholder="Select Date"
                                     format="YYYY-MM-DD"
                                     minDate="1960-01-01"
-                                    maxDate="2017-12-31"
+                                    maxDate="2018-12-31"
                                     confirmBtnText="Confirm"
                                     cancelBtnText="Cancel"
                                     customStyles={{
@@ -555,7 +574,6 @@ export class Register extends Component {
                                     selectedValue={this.state.marital}
                                     onValueChange={(value)=>this.setState({marital:value})}
                                 >
-                                
                                     {this.state.maritalOptions}
                                 </Picker>
                             </CardItem>
@@ -573,7 +591,6 @@ export class Register extends Component {
                                     selectedValue={this.state.religion}
                                     onValueChange={(value)=>this.setState({religion:value})}
                                 >
-                                
                                     {this.state.religionOptions}
                                 </Picker>
                             </CardItem>
@@ -589,7 +606,6 @@ export class Register extends Component {
                                     selectedValue={this.state.work}
                                     onValueChange={(value)=>this.setState({work:value})}
                                 >
-                                
                                     {this.state.workOptions}
                                 </Picker>
                             </CardItem>
@@ -605,7 +621,6 @@ export class Register extends Component {
                                     selectedValue={this.state.education}
                                     onValueChange={(value)=>this.setState({education:value})}
                                 >
-                                
                                     {this.state.educationOptions}
                                 </Picker>
                             </CardItem>
@@ -621,14 +636,11 @@ export class Register extends Component {
                                     selectedValue={this.state.salary}
                                     onValueChange={(value)=>this.setState({salary:value})}
                                 >
-                                
                                     {this.state.salaryRangeOptions}
                                 </Picker>
                             </CardItem>
 
-                            <Button title = "Pick Image Salary" onPress={()=>this.pickImageHandler(1)}>
-                                <Text> Salary </Text>
-                            </Button>
+                            {salaryButton}
 
                             <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
                                 <Text> ktpScan </Text>
@@ -658,14 +670,15 @@ export class Register extends Component {
 const mapStateToProps = state => {
     return {
         isLoadingImage: state.ui.isLoadingImage,
-        isLoadingData: state.ui.isLoadingData
+        isLoadingData: state.ui.isLoadingData,
+        isLoadingRegister: state.ui.isLoadingData
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
-        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData)),
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
     };
 };
 
