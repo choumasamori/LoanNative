@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Alert} from 'react-native';
 import axios from "axios/index";
 
+import { uiStartLoading, uiStopLoading } from "./index";
+
 const initialState = {
     urlSalary: '',
     urlKTP: '',
@@ -13,6 +15,7 @@ const initialState = {
 
 export const tryRegisterImage = (authData1, authData2, authData3, authData4) => {
     return dispatch => {
+        dispatch(uiStartLoading());
         var data1 = new FormData();
         var data2 = new FormData();
         var data3 = new FormData();
@@ -62,10 +65,12 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
                 //console.log(response)
                 console.log("ini url img salary " + response.data.url);
                 initialState.urlSalary = response.data.url;
+                dispatch(uiStopLoading());
             })
             .catch((error) => {
                 alert("uplod img fail salary");
                 console.log("Error " + error)
+                dispatch(uiStopLoading());
             })
 
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data2, config)
@@ -73,10 +78,12 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
                 //console.log(response)
                 console.log("ini url img ktp " + response.data.url);
                 initialState.urlKTP = response.data.url;
+                dispatch(uiStopLoading());
             })
             .catch((error) => {
                 alert("uplod img fail ktp");
                 console.log("Error " + error)
+                dispatch(uiStopLoading());
             })
 
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data3, config)
@@ -84,10 +91,12 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
                 //console.log(response)
                 console.log("ini url img npwp " + response.data.url);
                 initialState.urlNPWP = response.data.url;
+                dispatch(uiStopLoading());
             })
             .catch((error) => {
                 alert("uplod img fail npwp");
                 console.log("Error " + error)
+                dispatch(uiStopLoading());
             })
 
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data4, config)
@@ -96,10 +105,12 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
                 //console.log(response)
                 console.log("ini url img pic " + response.data.url);
                 initialState.urlPic = response.data.url;
+                dispatch(uiStopLoading());
             })
             .catch((error) => {
                 alert("uplod img fail pic");
                 console.log("Error " + error)
+                dispatch(uiStopLoading());
             })
     };
 }
@@ -107,6 +118,8 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
 
 export const tryRegisterData = (authData) => {
     return dispatch => {
+        dispatch(uiStartLoading());
+
         let url = 'http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/borrower';
         fetch(url, {
             method: "POST",
@@ -148,6 +161,7 @@ export const tryRegisterData = (authData) => {
             .then(res => res.json())
             .then(parsedRes => {
                 if(parsedRes.status == 400){
+                    dispatch(uiStopLoading());
                     Alert.alert(
                         'Warning',
                         'DATA CANT BE EMPTY',
@@ -157,6 +171,7 @@ export const tryRegisterData = (authData) => {
                         { cancelable: false }
                     )
                 } else {
+                    dispatch(uiStopLoading());
                     alert("SUCCESS SENT ALL DATA");
                 }
                 console.log(parsedRes);

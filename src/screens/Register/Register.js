@@ -6,6 +6,9 @@ import { tryRegisterImage } from "../../store/actions";
 
 import { tryRegisterData } from "../../store/actions";
 
+import { Spinner } from './../../components/common/index';
+
+
 import { connect } from 'react-redux';
 
 var options = {
@@ -323,7 +326,32 @@ export class Register extends Component {
         }
     }
 
+
     render() {
+        let RegisterButton = (
+            <Button  onPress={ this.sentAllData }>
+                <Text>REGISTER</Text>
+            </Button>
+        );
+
+        let sentAllImage = (
+            <Button  onPress={ this.RegisterImage }>
+                <Text>Sent All Image</Text>
+            </Button>
+        );
+
+        let sentAllData = (
+            <Button  onPress={ this.registerDataSubmit }>
+                <Text>Sent All Data</Text>
+            </Button>
+        )
+
+        if(this.props.isLoadingImage) {
+            sentAllImage = <Spinner />
+        } else if (this.props.isLoadingData) {
+            sentAllData = <Spinner />
+        }
+
         return (
             <Container>
                 <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
@@ -603,18 +631,9 @@ export class Register extends Component {
                                 <Text> picture </Text>
                             </Button>
 
-
-                            <Button  onPress={ this.RegisterImage }>
-                                <Text>Sent All Image</Text>
-                            </Button>
-
-                            <Button  onPress={ this.registerDataSubmit }>
-                                <Text>Sent All Data</Text>
-                            </Button>
-
-                            <Button  onPress={ this.sentAllData }>
-                                <Text>REGISTER</Text>
-                            </Button>
+                            {sentAllImage}
+                            {sentAllData}
+                            {RegisterButton}
 
                         </Form>
                     </Card>
@@ -625,6 +644,13 @@ export class Register extends Component {
 }
 
 
+const mapStateToProps = state => {
+    return {
+        isLoadingImage: state.ui.isLoadingImage,
+        isLoadingData: state.ui.isLoadingData
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
@@ -633,4 +659,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

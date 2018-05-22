@@ -1,1 +1,1 @@
-export * from './PickImage';
+export * from './Spinner';
