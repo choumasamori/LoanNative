@@ -28,12 +28,12 @@ export class Register extends Component {
             salaryRangeOptions:null,
             fullname: '',
             date:'',
-            gender:'',
-            marital:'',
-            religion:'',
-            work:'',
-            education:'',
-            salary:'',
+            gender:'Pria',
+            marital:'Belum Menikah',
+            religion:'Islam',
+            work:'PNS',
+            education:'SD',
+            salary:'< Rp 3.000.000',
             username: '',
             password: '',
             confPassword: '',
@@ -80,6 +80,7 @@ export class Register extends Component {
         }).then((results) => results.json()).then((data)=>{
             let options =  data.genderOptions.map((option, i)=>{
                 return(
+                    
                     <Picker.Item label={option} value={option} key={i}/>
                 );
             });
@@ -526,6 +527,7 @@ export class Register extends Component {
                                     selectedValue={this.state.marital}
                                     onValueChange={(value)=>this.setState({marital:value})}
                                 >
+                                
                                     {this.state.maritalOptions}
                                 </Picker>
                             </CardItem>
@@ -543,6 +545,7 @@ export class Register extends Component {
                                     selectedValue={this.state.religion}
                                     onValueChange={(value)=>this.setState({religion:value})}
                                 >
+                                
                                     {this.state.religionOptions}
                                 </Picker>
                             </CardItem>
@@ -558,6 +561,7 @@ export class Register extends Component {
                                     selectedValue={this.state.work}
                                     onValueChange={(value)=>this.setState({work:value})}
                                 >
+                                
                                     {this.state.workOptions}
                                 </Picker>
                             </CardItem>
@@ -573,6 +577,7 @@ export class Register extends Component {
                                     selectedValue={this.state.education}
                                     onValueChange={(value)=>this.setState({education:value})}
                                 >
+                                
                                     {this.state.educationOptions}
                                 </Picker>
                             </CardItem>
@@ -588,6 +593,7 @@ export class Register extends Component {
                                     selectedValue={this.state.salary}
                                     onValueChange={(value)=>this.setState({salary:value})}
                                 >
+                                
                                     {this.state.salaryRangeOptions}
                                 </Picker>
                             </CardItem>
