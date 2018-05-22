@@ -481,7 +481,7 @@ export class Register extends Component {
                                     placeholder="Select Date"
                                     format="YYYY-MM-DD"
                                     minDate="1960-01-01"
-                                    maxDate="2018-12-31"
+                                    maxDate="2017-12-31"
                                     confirmBtnText="Confirm"
                                     cancelBtnText="Cancel"
                                     customStyles={{
