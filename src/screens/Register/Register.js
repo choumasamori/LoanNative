@@ -219,7 +219,7 @@ export class Register extends Component {
             placeOfBirth: this.state.placeOfBirth,
             date: this.state.date,
             gender: this.state.gender,
-            martial: this.state.martial,
+            marital: this.state.marital,
             religion: this.state.religion,
             work: this.state.work,
             education: this.state.education,
@@ -432,6 +432,7 @@ export class Register extends Component {
                                     onDateChange={(date) => {this.setState({date: date})}}
                                 />
                             </Item>
+
                             <CardItem>
                                 <Left>
                                     <Label>Gender</Label>
@@ -447,6 +448,7 @@ export class Register extends Component {
                                     {this.state.genderOptions}
                                 </Picker>
                             </CardItem>
+
                             <CardItem>
                                 <Left>
                                     <Label>Marital Status</Label>
@@ -461,7 +463,10 @@ export class Register extends Component {
                                 >
                                     {this.state.maritalOptions}
                                 </Picker>
+                                <Text>{this.state.marital}</Text>
                             </CardItem>
+
+
                             <CardItem>
                                 <Left>
                                     <Label>Religion</Label>

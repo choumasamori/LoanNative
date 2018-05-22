@@ -153,9 +153,6 @@ export const tryRegisterImagePic = (authData) => {
 }
 
 
-
-
-
 export const tryRegisterData = (authData) => {
     return dispatch => {
         let url = 'http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/borrower';
@@ -185,7 +182,7 @@ export const tryRegisterData = (authData) => {
                 placeOfBirth: authData.placeOfBirth,
                 dateOfBirth: authData.date,
                 gender: authData.gender,
-                maritalStatus: authData.martial,
+                maritalStatus: authData.marital,
                 religion: authData.religion,
                 work: authData.work,
                 education: authData.education,
