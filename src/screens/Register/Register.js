@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-import ImagePicker from 'react-native-image-picker';
-import { tryRegisterImage } from "../../store/actions";
+import ImagePicker from 'react-native-image-picker'
 
-import { tryRegisterData } from "../../store/actions";
+import { tryRegisterImage ,tryRegisterData} from "../../store/actions";
 
 import { Spinner } from './../../components/common/index';
 
 
 import { connect } from 'react-redux';
+
+
 
 var options = {
     title: 'Pick an Image'
@@ -30,12 +31,12 @@ export class Register extends Component {
             salaryRangeOptions:null,
             fullname: '',
             date:'',
-            gender:'',
-            marital:'',
-            religion:'',
-            work:'',
-            education:'',
-            salary:'',
+            gender:'Pria',
+            marital:'Belum Menikah',
+            religion:'Islam',
+            work:'PNS',
+            education:'SD',
+            salary:'< Rp 3.000.000',
             username: '',
             password: '',
             confPassword: '',
@@ -82,6 +83,7 @@ export class Register extends Component {
         }).then((results) => results.json()).then((data)=>{
             let options =  data.genderOptions.map((option, i)=>{
                 return(
+                    
                     <Picker.Item label={option} value={option} key={i}/>
                 );
             });
@@ -193,7 +195,10 @@ export class Register extends Component {
         };
         this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
-
+    sendAllData = () =>{
+        this.RegisterImage();
+        this.registerDataSubmit();
+    }
     registerDataSubmit = () => {
         const authData = {
             fullname: this.state.fullname,
@@ -221,6 +226,7 @@ export class Register extends Component {
             work: this.state.work,
             education: this.state.education,
             salary: this.state.salary,
+
         };
         this.props.onTryRegisterData(authData);
     }
@@ -503,7 +509,7 @@ export class Register extends Component {
                                     placeholder="Select Date"
                                     format="YYYY-MM-DD"
                                     minDate="1960-01-01"
-                                    maxDate="2018-12-31"
+                                    maxDate="2017-12-31"
                                     confirmBtnText="Confirm"
                                     cancelBtnText="Cancel"
                                     customStyles={{
@@ -549,6 +555,7 @@ export class Register extends Component {
                                     selectedValue={this.state.marital}
                                     onValueChange={(value)=>this.setState({marital:value})}
                                 >
+                                
                                     {this.state.maritalOptions}
                                 </Picker>
                             </CardItem>
@@ -566,6 +573,7 @@ export class Register extends Component {
                                     selectedValue={this.state.religion}
                                     onValueChange={(value)=>this.setState({religion:value})}
                                 >
+                                
                                     {this.state.religionOptions}
                                 </Picker>
                             </CardItem>
@@ -581,6 +589,7 @@ export class Register extends Component {
                                     selectedValue={this.state.work}
                                     onValueChange={(value)=>this.setState({work:value})}
                                 >
+                                
                                     {this.state.workOptions}
                                 </Picker>
                             </CardItem>
@@ -596,6 +605,7 @@ export class Register extends Component {
                                     selectedValue={this.state.education}
                                     onValueChange={(value)=>this.setState({education:value})}
                                 >
+                                
                                     {this.state.educationOptions}
                                 </Picker>
                             </CardItem>
@@ -611,6 +621,7 @@ export class Register extends Component {
                                     selectedValue={this.state.salary}
                                     onValueChange={(value)=>this.setState({salary:value})}
                                 >
+                                
                                     {this.state.salaryRangeOptions}
                                 </Picker>
                             </CardItem>
@@ -654,7 +665,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
-        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData)),
     };
 };
 
