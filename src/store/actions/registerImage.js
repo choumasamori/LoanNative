@@ -9,8 +9,6 @@ const initialState = {
     urlPic: ''
 };
 
-
-
 export const tryRegisterImage = (authData1, authData2, authData3, authData4) => {
     return dispatch => {
         var data1 = new FormData();

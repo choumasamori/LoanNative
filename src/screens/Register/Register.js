@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-import ImagePicker from 'react-native-image-picker';
-import { tryRegisterImage } from "../../store/actions";
+import ImagePicker from 'react-native-image-picker'
 
-import { tryRegisterData } from "../../store/actions";
+import { tryRegisterImage ,tryRegisterData} from "../../store/actions";
 
 import { connect } from 'react-redux';
+
+
 
 var options = {
     title: 'Pick an Image'
@@ -190,7 +191,10 @@ export class Register extends Component {
         };
         this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
-
+    sendAllData = () =>{
+        this.RegisterImage();
+        this.registerDataSubmit();
+    }
     registerDataSubmit = () => {
         const authData = {
             fullname: this.state.fullname,
@@ -218,6 +222,7 @@ export class Register extends Component {
             work: this.state.work,
             education: this.state.education,
             salary: this.state.salary,
+
         };
         this.props.onTryRegisterData(authData);
     }
@@ -607,6 +612,10 @@ export class Register extends Component {
                                 <Text>Sent All Data</Text>
                             </Button>
 
+                            <Button  onPress={this.sendAllData}>
+                                <Text>REGISTER</Text>
+                            </Button>
+
                         </Form>
                     </Card>
                 </Content>
@@ -619,7 +628,7 @@ export class Register extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
-        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData)),
     };
 };
 
