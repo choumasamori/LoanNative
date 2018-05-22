@@ -222,6 +222,11 @@ export class Register extends Component {
         this.props.onTryRegisterData(authData);
     }
 
+    sentAllData = () => {
+        this.RegisterImage();
+        this.registerDataSubmit();
+    }
+
     pickImageHandler = (image) => {
         if(image === 1) {
 
@@ -605,6 +610,10 @@ export class Register extends Component {
 
                             <Button  onPress={ this.registerDataSubmit }>
                                 <Text>Sent All Data</Text>
+                            </Button>
+
+                            <Button  onPress={ this.sentAllData }>
+                                <Text>REGISTER</Text>
                             </Button>
 
                         </Form>
