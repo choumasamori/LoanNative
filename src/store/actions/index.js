@@ -1,3 +1,5 @@
 export { tryLogin } from './login';
-export { tryRegisterImage } from './registerImage';
-export { tryRegisterData } from './registerImage';
+export {
+    tryRegisterData, tryRegisterImageSalary,
+    tryRegisterImageKtp, tryRegisterImageNPWP, tryRegisterImagePic
+} from './registerImage';
