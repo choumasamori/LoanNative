@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Content, Item, Form, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
 import Register from './../Register/Register';
-
+import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { tryLogin } from "../../store/actions";
+import {Spinner} from "../../components/common";
 
 const ACCESS_TOKEN = '';
 
@@ -17,8 +18,8 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: "",
-            password: "",
+            username: "sigit@neo-fusion.com",
+            password: "123456",
         }
     }
 
@@ -31,6 +32,17 @@ class Login extends Component {
     }
 
     render() {
+
+        let loginButton = (
+            <Button rounded full onPress={ this.authHandleLogin } style={{backgroundColor:'purple'}}>
+                <Text>Log In</Text>
+            </Button>
+        );
+
+        if(this.props.isLoadingLogin) {
+            loginButton = <Spinner />
+        }
+
       return (
         <Container style={{backgroundColor: 'white',}}>
             <Image source={require('../../img/bg.jpg')} style={{width:'100%', height:'100%', position:'absolute', resizeMode:'cover'}}/>
@@ -55,14 +67,20 @@ class Login extends Component {
                     </Form>
 
                     <CardItem>
-                       <Button rounded full onPress={ this.authHandleLogin } style={{backgroundColor:'purple'}}>
-                             <Text>Log In</Text>
-                      </Button>
+                        {loginButton}
                     </CardItem>
                       <CardItem>
                             <Left>
-                            <Text note onPress={()=>this.props.navigation.navigate('Forgot')}>Forgot Your Password ?</Text>
+                                <Text note onPress = {
+                                    () => this.props.navigator.push(
+                                        {
+                                            screen: 'KreditPro.Forgot',
+                                        }
+                                    )
+                                }
+                                > Forgot your password</Text>
                             </Left>
+
                            <Right>
                             <Text note onPress = {
                                 () => this.props.navigator.push(
@@ -81,10 +99,26 @@ class Login extends Component {
     }
   }
 
+const styles = ({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+})
+
   const mapDispatchToProps = dispatch => {
     return {
         onTryLogin: (authData) => dispatch(tryLogin(authData))
     };
   };
 
-  export default connect(null, mapDispatchToProps)(Login);
+
+
+const mapStateToProps = state => {
+    return {
+        isLoadingLogin: state.ui.isLoadingLogin,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

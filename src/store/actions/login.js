@@ -1,9 +1,17 @@
-import {Alert} from 'react-native';
+import React, { Component } from 'react';
+import { Alert, AsyncStorage } from 'react-native';
+import { AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from "./actionTypes";
+import { uiStartLoading, uiStopLoading } from "./uiLoading";
+import StartDashboard from '../../screens/startDashboard/startDashboard';
+import TermAndCondt from '../../startSingleScreen/TermAndCondt/TermAndCondt';
+
+
 
 export const tryLogin = (authData) => {
     return dispatch => {
+        dispatch(uiStartLoading());
         let url = 'http://wf.dev.neo-fusion.com/tdfp2p/ws/login';
-        fetch(url, {
+        return fetch(url, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -15,6 +23,7 @@ export const tryLogin = (authData) => {
         })
             .then(res => res.json())
             .then(parsedRes => {
+                dispatch(uiStopLoading());
                 if(parsedRes.status == 401 || parsedRes.status == 400){
                     Alert.alert(
                         'Warning',
@@ -25,12 +34,56 @@ export const tryLogin = (authData) => {
                         { cancelable: false }
                     )
                 } else {
-                    alert("sukses");
+                    console.log("ini console log token:" + parsedRes.access_token);
+                    console.log("ini console log expiry:" + parsedRes.expiry);
+
+                    AsyncStorage.setItem("auth:token:lagi", parsedRes.access_token, () => console.log("fail"));
+
+                    let tok = AsyncStorage.getItem("auth:token:lagi");
+                    console.log("auth token lagi : " + JSON.stringify(tok));
+                    console.log("auth token lagi tok acc token: " + tok.access_token);
+
+                        tryStoreToken(parsedRes.access_token, parsedRes.expiry)
+                    TermAndCondt();
                 }
+                tryGetToken();
                 console.log(parsedRes);
             })
             .catch(err => {
                 console.log(err);
+                dispatch(uiStopLoading());
             })
+    };
+};
+
+export const tryStoreToken = (token, expiryDate) => {
+    return dispatch => {
+        dispatch(trySetToken(token, expiryDate))
+        AsyncStorage.setItem("auth:token", token);
+        AsyncStorage.setItem("auth:expiryDate", expiryDate);
+    }
+}
+
+export const tryGetToken = () => {
+    const token = AsyncStorage.getItem("auth:token")
+    console.log("ini try getToken " + token);
+    //console.log("ini auth:token: " + AsyncStorage.getItem("auth:token"));
+}
+
+export const tryAutoSignIn = () => {
+    return dispatch => {
+        dispatch(tryGetToken())
+            .then(token => {
+                StartDashboard();
+            })
+            .catch(err => console.log("Failed to fetch token!"));
+    };
+};
+
+export const trySetToken = (token, expiryDate) => {
+    return {
+        type: AUTH_SET_TOKEN,
+        token: token,
+        expiryDate: expiryDate
     };
 };

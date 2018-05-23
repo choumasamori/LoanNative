@@ -113,6 +113,19 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
     };
 }
 
+export const tryResetData = (authData) => {
+    return dispatch => {
+        authData.isLoadSalary;
+        authData.isLoadKtp;
+        authData.isLoadNpwp;
+        authData.isLoadPic;
+
+        authData.fullname;
+        authData.username;
+        authData.password;
+    };
+}
+
 
 export const tryRegisterData = (authData) => {
     return dispatch => {
@@ -168,9 +181,11 @@ export const tryRegisterData = (authData) => {
                         ],
                         { cancelable: false }
                     )
+                    tryResetData();
                 } else {
                     dispatch(uiStopLoading());
                     alert("SUCCESS SENT ALL DATA");
+                    tryResetData();
                 }
                 console.log(parsedRes);
             })

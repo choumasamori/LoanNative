@@ -1,6 +1,6 @@
-export { tryLogin } from './login';
+export { tryLogin, tryAutoSignIn, tryGetToken } from './login';
 export {
-    tryRegisterData, tryRegisterImage
+    tryRegisterData, tryRegisterImage, tryResetData
 } from './registerImage';
 
 export { uiStartLoading, uiStopLoading } from './uiLoading';

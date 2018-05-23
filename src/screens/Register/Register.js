@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
-import { tryRegisterImage } from "../../store/actions";
-
-import { tryRegisterData } from "../../store/actions";
+import { tryRegisterImage, tryRegisterData, tryResetData } from "../../store/actions";
 
 import { Spinner } from './../../components/common/index';
 
@@ -28,7 +26,7 @@ export class Register extends Component {
             workOptions:null,
             educationOptions:null,
             salaryRangeOptions:null,
-            fullname: 'asw',
+            fullname: '',
             date:'',
             gender:'Pria',
             marital:'Belum Menikah',
@@ -36,24 +34,24 @@ export class Register extends Component {
             work:'PNS',
             education:'SD',
             salary:'< Rp 3.000.000',
-            username: 'asw',
-            password: 'asw',
-            confPassword: 'asw',
-            email: 'asw@m.com',
-            phone: '321123',
-            ktpNumber: '32112',
-            address: 'dsadsa',
-            ktpAddress: 'dsaeq',
-            province: 'dsadqwe',
-            city: 'dsaq',
-            village: 'dsae',
-            district: 'dsae',
-            postalCode: '123',
-            placeOfBirth: 'dsad',
-            workArea: 'adsa',
-            coupleName: 'dsas',
-            numDependts: '12',
-            npwpNumber: '12321',
+            username: '',
+            password: '',
+            confPassword: '',
+            email: '',
+            phone: '',
+            ktpNumber: '',
+            address: '',
+            ktpAddress: '',
+            province: '',
+            city: '',
+            village: '',
+            district: '',
+            postalCode: '',
+            placeOfBirth: '',
+            workArea: '',
+            coupleName: '',
+            numDependts: '',
+            npwpNumber: '',
 
             imageFilenameSalary: '',
             imageTypeSalary: '',
@@ -71,7 +69,10 @@ export class Register extends Component {
             imageTypePic: '',
             imageUriPic: '',
 
-            isLoad: false
+            isLoadSalary: false,
+            isLoadKtp: false,
+            isLoadNpwp: false,
+            isLoadPic: false,
         }
         this.pickImageHandler = this.pickImageHandler.bind(this);
     }
@@ -198,6 +199,7 @@ export class Register extends Component {
         this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
 
+
     registerDataSubmit = () => {
         const authData = {
             fullname: this.state.fullname,
@@ -251,14 +253,11 @@ export class Register extends Component {
                         imageFilenameSalary: filename,
                         imageTypeSalary: type,
                         imageUriSalary: uri,
-                        isLoad: true
+                        isLoadSalary: true,
                     });
 
                     console.log("imageData salary : "+data);
                 }
-                // if(response.data !== null) {
-                //     this.setState({ isLoad: false })
-                // }
             });
         } else if (image === 2) {
 
@@ -279,6 +278,7 @@ export class Register extends Component {
                         imageFilenameKtp: filename,
                         imageTypeKtp: type,
                         imageUriKtp: uri,
+                        isLoadKtp: true,
                     });
                     console.log("imageData ktp : "+data);
                 }
@@ -302,6 +302,7 @@ export class Register extends Component {
                         imageFilenameNpwp: filename,
                         imageTypeNpwp: type,
                         imageUriNpwp: uri,
+                        isLoadNpwp: true,
                     });
                     console.log("imageData npwp : "+data);
                 }
@@ -325,6 +326,7 @@ export class Register extends Component {
                         imageFilenamePic: filename,
                         imageTypePic: type,
                         imageUriPic: uri,
+                        isLoadPic: true,
                     });
                     console.log("imageData pic : "+data);
                 }
@@ -336,6 +338,44 @@ export class Register extends Component {
         this.RegisterImage();
         this.registerDataSubmit();
     }
+
+    resetAll = () => {
+        const authData = {
+            isLoadSalary: false,
+            isLoadKtp: false,
+            isLoadNpwp: false,
+            isLoadPic: false,
+
+            fullname: '',
+            username: '',
+            password: '',
+            confPassword: '',
+            email: '',
+            phone: '',
+            ktpNumber: '',
+            address: '',
+            ktpAddress: '',
+            province: '',
+            city: '',
+            village: '',
+            district: '',
+            workArea: '',
+            coupleName: '',
+            numDependts: '',
+            npwpNumber: '',
+            postalCode: '',
+            placeOfBirth: '',
+            date: '',
+            gender: '',
+            marital: '',
+            religion: '',
+            work: '',
+            education: '',
+            salary: '',
+        };
+        this.props.onTryResetData(authData);
+    }
+
 
 
     render() {
@@ -363,10 +403,46 @@ export class Register extends Component {
             </Button>
         );
 
-        if(this.state.isLoad === false) {
+        let ktpButton = (
+            <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
+                <Text> ktpScan </Text>
+            </Button>
+        );
+
+        let npwpButton = (
+            <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
+                <Text> npwpScan </Text>
+            </Button>
+        );
+
+        let picButton = (
+            <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
+                <Text> picture </Text>
+            </Button>
+        );
+
+        if(this.state.isLoadSalary === false) {
             { salaryButton }
-        } else if(this.state.isLoad === true){
-            <Text>Salary pic donee</Text>
+        } else if(this.state.isLoadSalary === true){
+            salaryButton = <Text>Salary Done</Text>
+        }
+
+        if(this.state.isLoadKtp === false) {
+            {ktpButton}
+        } else if(this.state.isLoadKtp === true) {
+            ktpButton = <Text>Ktp Done</Text>
+        }
+
+        if (this.state.isLoadNpwp === false) {
+            {npwpButton}
+        } else if (this.state.isLoadNpwp === true) {
+            npwpButton = <Text>Npwp Done</Text>
+        }
+
+        if(this.state.isLoadPic === false) {
+            {picButton}
+        } else if(this.state.isLoadPic === true) {
+            picButton = <Text>Pic Done</Text>
         }
 
         if(this.props.isLoadingImage) {
@@ -382,138 +458,157 @@ export class Register extends Component {
                 <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
                     <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                         <Form>
-                            <Item floatingLabel>
-                                <Label>Full Name</Label>
+                            <Item stackedLabel>
+                                <Label>FullName</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({fullname: text})}
+                                    value={this.state.fullname}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Username</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({username: text})}
+                                    value={this.state.username}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({password: text})}
                                     secureTextEntry={true}
+                                    value={this.state.password}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Confirm Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({confPassword: text})}
                                     secureTextEntry={true}
+                                    value={this.state.confPassword}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Email</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({email: text})}
+                                    value={this.state.email}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Phone Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({phone: text})}
+                                    value={this.state.phone}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>KTP Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ktpNumber: text})}
+                                    value={this.state.ktpNumber}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({address: text})}
+                                    value={this.state.address}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>KTP Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ktpAddress: text})}
+                                    value={this.state.ktpAddress}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Province</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({province: text})}
+                                    value={this.state.province}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>City</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({city: text})}
+                                    value={this.state.city}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Village</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({village: text})}
+                                    value={this.state.village}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>District</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({district: text})}
+                                    value={this.state.district}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Work Area</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({workArea: text})}
+                                    value={this.state.workArea}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Couple Name</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({coupleName: text})}
+                                    value={this.state.coupleName}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Num Dependts</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({numDependts: text})}
+                                    value={this.state.numDependts}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>NPWP Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({npwpNumber: text})}
+                                    value={this.state.npwpNumber}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Postal Code</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ postalCode: text})}
+                                    value={this.state.postalCode}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
+                            <Item stackedLabel>
                                 <Label>Place of Birth</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({placeOfBirth: text})}
+                                    value={this.state.placeOfBirth}
                                 />
                             </Item>
 
@@ -550,13 +645,16 @@ export class Register extends Component {
                                 <Left>
                                     <Label>Gender</Label>
                                 </Left>
+
                                 <Picker
                                     mode="dropdown"
+                                    placeHolder="choose one"
                                     iosHeader="Gender"
                                     iosIcon={<Icon name="ios-arrow-down-outline" />}
                                     style={{ width: undefined }}
                                     selectedValue={this.state.gender}
                                     onValueChange={(value)=>this.setState({gender:value})}
+
                                 >
                                     {this.state.genderOptions}
                                 </Picker>
@@ -642,17 +740,15 @@ export class Register extends Component {
 
                             {salaryButton}
 
-                            <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
-                                <Text> ktpScan </Text>
-                            </Button>
+                            {ktpButton}
 
-                            <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
-                                <Text> npwpScan </Text>
-                            </Button>
+                            {npwpButton}
 
-                            <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
-                                <Text> picture </Text>
-                            </Button>
+                            {picButton}
+
+                            {/*<Button onPress={this.resetAll}>*/}
+                                {/*<Text> reset all </Text>*/}
+                            {/*</Button>*/}
 
                             {sentAllImage}
                             {sentAllData}
@@ -678,7 +774,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onTryRegisterImage: (authData1, authData2, authData3, authData4) => dispatch(tryRegisterImage(authData1, authData2, authData3, authData4)),
-        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData))
+        onTryRegisterData: (authData) => dispatch(tryRegisterData(authData)),
+        onTryResetData: (authData) => dispatch(tryResetData(authData)),
     };
 };
 

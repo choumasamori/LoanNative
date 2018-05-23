@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Navigation } from "react-native-navigation";
-import Dashboard from "./src/screens/Dashboard/Dashboard";
+import StartDashboard from "./src/screens/startDashboard/startDashboard";
 import Login from './src/screens/Login/Login';
 import Register from './src/screens/Register/Register';
 import Forgot from './src/screens/Forgot/Forgot';
+import History from './src/screens/History/History';
+import TermAndCondt from './src/screens/TermAndCondt/TermAndCondt';
+
 
 import { Provider } from "react-redux";
 import configureStore from "./src/store/configureStore";
@@ -27,8 +30,23 @@ Navigation.registerComponent(
 );
 
 Navigation.registerComponent(
-    "KreditPro.Dashboard",
-    () => Dashboard,
+    "KreditPro.startDashboard",
+    () => StartDashboard,
+);
+
+Navigation.registerComponent(
+    "KreditPro.Forgot",
+    () => Forgot,
+);
+
+Navigation.registerComponent(
+    "KreditPro.History",
+    () => History,
+);
+
+Navigation.registerComponent(
+    "KreditPro.TermAndCondt",
+    () => TermAndCondt,
 );
 
 // Start a App
