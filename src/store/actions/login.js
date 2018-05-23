@@ -1,3 +1,4 @@
+import { AUTH_LOGIN, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from "./actionTypes";
 import {Alert} from 'react-native';
 
 export const tryLogin = (authData) => {
