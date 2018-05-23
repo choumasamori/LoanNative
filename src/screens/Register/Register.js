@@ -192,10 +192,6 @@ export class Register extends Component {
         };
         this.props.onTryRegisterImage(authData1, authData2, authData3, authData4);
     }
-    sendAllData = () =>{
-        this.RegisterImage();
-        this.registerDataSubmit();
-    }
     registerDataSubmit = () => {
         const authData = {
             fullname: this.state.fullname,
