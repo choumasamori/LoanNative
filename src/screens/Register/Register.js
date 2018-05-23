@@ -366,7 +366,7 @@ export class Register extends Component {
         if(this.state.isLoad === false) {
             { salaryButton }
         } else if(this.state.isLoad === true){
-            <Text>Salary pic done</Text>
+            <Text>Salary pic donee</Text>
         }
 
         if(this.props.isLoadingImage) {
