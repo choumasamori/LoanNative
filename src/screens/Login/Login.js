@@ -27,8 +27,8 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: "sigit@neo-fusion.com",
-            password: "123456",
+            username: "",
+            password: "",
         }
     }
 
@@ -59,14 +59,14 @@ class Login extends Component {
             <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
                     <Image source={require('../../img/logo.png')} style={{width: '50%', height: '50%', alignSelf:'center', resizeMode:'contain'}}/>
                     <Form>
-                        <Item floatingLabel>
+                        <Item stackedLabel>
                         <Label>Username/Email/Phone Number</Label>
                             <Input
                                 onChangeText={(text)=>this.setState({username: text})}
                             />
                         </Item>
 
-                        <Item floatingLabel>
+                        <Item stackedLabel>
                         <Label>Password</Label>
                             <Input
                                 onChangeText={(text)=>this.setState({password: text})}
