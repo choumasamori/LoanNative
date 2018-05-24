@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import {AsyncStorage, Image} from 'react-native';
 import { Container, Content, Item, Form, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
-import Register from './../Register/Register';
-import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { tryLogin } from "../../store/actions";
 import {Spinner} from "../../components/common";
+import startDashboard from '../startDashboard/startDashboard';
 
-const ACCESS_TOKEN = '';
 
 class Login extends Component {
+
     static navigatorStyle = {
         navBarHidden: true,
+    }
+
+    async getToken () {
+        let tok = await AsyncStorage.getItem("auth:token");
+    }
+
+    componentDidMount() {
+        if(this.getToken.length > 20) {
+            startDashboard();
+        }
     }
 
     constructor(props){
@@ -112,8 +121,6 @@ const styles = ({
         onTryLogin: (authData) => dispatch(tryLogin(authData))
     };
   };
-
-
 
 const mapStateToProps = state => {
     return {

@@ -1,6 +1,6 @@
+import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import CekList from '../../img/ceklist.png';
-
 
 const StartDashboard = () => {
         Navigation.startTabBasedApp({
