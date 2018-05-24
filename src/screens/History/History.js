@@ -15,17 +15,14 @@ class History extends Component {
     }
 
     componentDidMount() {
-        const now = new Date();
-        const expiry = now.getSeconds() + 10;
+        const date = new Date();
+        const now = date.getHours() + '-' + date.getMinutes() + '-' +date.getSeconds();
+        const exp = "13-32-00";
 
-        this.setState({
-            now: now,
-            exp: expiry
-        })
-
-        // if(now.getSeconds() > expiry){
-        //     Login();
-        // }
+        alert(exp + '\n' + now);
+        if(exp.toString() <= now.toString()){
+            this.removeToken();
+        }
     }
 
 
