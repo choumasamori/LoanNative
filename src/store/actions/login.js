@@ -6,6 +6,11 @@ import StartDashboard from '../../screens/startDashboard/startDashboard';
 import TermAndCondt from '../../startSingleScreen/TermAndCondt/TermAndCondt';
 
 
+saveToken = async (token) => {
+    await AsyncStorage.setItem("auth:token:lagi", token);
+}
+
+
 
 export const tryLogin = (authData) => {
     return dispatch => {
@@ -37,11 +42,12 @@ export const tryLogin = (authData) => {
                     console.log("ini console log token:" + parsedRes.access_token);
                     console.log("ini console log expiry:" + parsedRes.expiry);
 
-                    AsyncStorage.setItem("auth:token:lagi", parsedRes.access_token, () => console.log("fail"));
+                    saveToken(parsedRes.access_token);
+                    //AsyncStorage.setItem("auth:token:lagi", parsedRes.access_token);
 
-                    let tok = AsyncStorage.getItem("auth:token:lagi");
-                    console.log("auth token lagi : " + JSON.stringify(tok));
-                    console.log("auth token lagi tok acc token: " + tok.access_token);
+                    // let tok = AsyncStorage.getItem("auth:token:lagi");
+                    // console.log("auth token lagi : " + JSON.stringify(tok));
+                    // console.log("auth token lagi tok acc token: " + tok.access_token);
 
                         tryStoreToken(parsedRes.access_token, parsedRes.expiry)
                     TermAndCondt();
