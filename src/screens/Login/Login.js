@@ -17,7 +17,17 @@ class Login extends Component {
     async componentDidMount() {
         let tok = await AsyncStorage.getItem("auth:token");
 
-        if(JSON.stringify(tok).length > 20 && JSON.stringify(tok) != null) {
+        // const date = new Date();
+        // const now = date.getHours() + '-' + date.getMinutes() + '-' +date.getSeconds();
+        // const change = date.getHours() + '-' + date.setMinutes((date.getMinutes())+1) + '-' + date.getSeconds();
+        // change.toString();
+        // now.toString();
+        // const exp = "13-25-00";
+        //
+        // //alert(date.setMinutes(5));
+        // //alert(now + '\n' + exp + '\n' + change);
+
+        if(JSON.stringify(tok).length > 20) {
             startDashboard();
         }
     }
@@ -26,8 +36,8 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: "sigit@neo-fusion.com",
-            password: "123456",
+            username: "",
+            password: "",
         }
     }
 

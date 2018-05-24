@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Alert, AsyncStorage } from 'react-native';
-import { AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from "./actionTypes";
 import { uiStartLoading, uiStopLoading } from "./uiLoading";
 import StartDashboard from '../../screens/startDashboard/startDashboard';
+
+
+//const FIX_TOKEN = AsyncStorage.getItem("auth:token");
 
 saveToken = async (token) => {
     await AsyncStorage.setItem("auth:token", token);
 }
+
 
 export const tryLogin = (authData) => {
     return dispatch => {
@@ -36,6 +39,7 @@ export const tryLogin = (authData) => {
                     )
                 } else {
                     saveToken(parsedRes.access_token);
+                    //alert(JSON.stringify(FIX_TOKEN));
                     StartDashboard();
                 }
             })

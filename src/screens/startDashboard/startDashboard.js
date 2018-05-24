@@ -6,15 +6,15 @@ const StartDashboard = () => {
         Navigation.startTabBasedApp({
             tabs: [
                 {
-                    screen: "KreditPro.History",
-                    label: "Pro History",
-                    title: "Pro History",
+                    screen: "KreditPro.Dashboard",
+                    label: "Pro Dashboard",
+                    title: "Pro Dashboard",
                     icon: CekList,
                 },
                 {
-                    screen: "KreditPro.TermAndCondt",
-                    label: "Pro Term",
-                    title: "Pro Term",
+                    screen: "KreditPro.Forgot",
+                    label: "Pro Forgot",
+                    title: "Pro Forgot",
                     icon: CekList,
                 }
             ],

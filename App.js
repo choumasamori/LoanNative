@@ -4,7 +4,7 @@ import StartDashboard from "./src/screens/startDashboard/startDashboard";
 import Login from './src/screens/Login/Login';
 import Register from './src/screens/Register/Register';
 import Forgot from './src/screens/Forgot/Forgot';
-import History from './src/screens/History/History';
+import Dashboard from './src/screens/Dashboard/Dashboard';
 import TermAndCondt from './src/screens/TermAndCondt/TermAndCondt';
 
 
@@ -40,8 +40,8 @@ Navigation.registerComponent(
 );
 
 Navigation.registerComponent(
-    "KreditPro.History",
-    () => History,
+    "KreditPro.Dashboard",
+    () => Dashboard,
 );
 
 Navigation.registerComponent(
