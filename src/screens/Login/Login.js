@@ -13,12 +13,11 @@ class Login extends Component {
         navBarHidden: true,
     }
 
-    async getToken () {
-        let tok = await AsyncStorage.getItem("auth:token");
-    }
 
-    componentDidMount() {
-        if(this.getToken.length > 20) {
+    async componentDidMount() {
+        let tok = await AsyncStorage.getItem("auth:token");
+
+        if(JSON.stringify(tok).length > 20 && JSON.stringify(tok) != null) {
             startDashboard();
         }
     }
@@ -27,8 +26,8 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: "",
-            password: "",
+            username: "sigit@neo-fusion.com",
+            password: "123456",
         }
     }
 
