@@ -3,6 +3,8 @@ import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, B
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
 import { tryRegisterImage, tryRegisterData, tryResetData } from "../../store/actions";
+import { Image, ScrollView } from 'react-native';
+
 
 import { Spinner } from './../../components/common/index';
 
@@ -380,69 +382,70 @@ export class Register extends Component {
 
     render() {
         let RegisterButton = (
-            <Button  onPress={ this.sentAllData }>
-                <Text>REGISTER</Text>
+            <Button style={styles.button} onPress={ this.sentAllData }>
+                <Text style={styles.buttonText}>REGISTER</Text>
             </Button>
         );
 
         let sentAllImage = (
-            <Button  onPress={ this.RegisterImage }>
-                <Text>Sent All Image</Text>
+            <Button style={styles.button} onPress={ this.RegisterImage }>
+                <Text style={styles.buttonText}>Sent All Image</Text>
             </Button>
         );
 
         let sentAllData = (
-            <Button  onPress={ this.registerDataSubmit }>
-                <Text>Sent All Data</Text>
+            <Button style={styles.button} onPress={ this.registerDataSubmit }>
+                <Text style={styles.buttonText}>Sent All Data</Text>
             </Button>
         );
 
         let salaryButton = (
-            <Button title = "Pick Image Salary" onPress={()=>this.pickImageHandler(1)}>
-                <Text> Salary </Text>
+            <Button
+                style={styles.button} onPress={()=>this.pickImageHandler(1)}>
+                <Text style={styles.buttonText}> Salary </Text>
             </Button>
         );
 
         let ktpButton = (
-            <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
-                <Text> ktpScan </Text>
+            <Button style={styles.button} onPress = {() =>this.pickImageHandler(2)}>
+                <Text style={styles.buttonText}> ktpScan </Text>
             </Button>
         );
 
         let npwpButton = (
-            <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
-                <Text> npwpScan </Text>
+            <Button style={styles.button} onPress = {()=>this.pickImageHandler(3)}>
+                <Text style={styles.buttonText}> npwpScan </Text>
             </Button>
         );
 
         let picButton = (
-            <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
-                <Text> picture </Text>
+            <Button style={styles.button} onPress={()=>this.pickImageHandler(4)}>
+                <Text style={styles.buttonText}> picture </Text>
             </Button>
         );
 
         if(this.state.isLoadSalary === false) {
             { salaryButton }
         } else if(this.state.isLoadSalary === true){
-            salaryButton = <Text>Salary Done</Text>
+            salaryButton = <Text style={styles.textDone}>Salary Done</Text>
         }
 
         if(this.state.isLoadKtp === false) {
             {ktpButton}
         } else if(this.state.isLoadKtp === true) {
-            ktpButton = <Text>Ktp Done</Text>
+            ktpButton = <Text style={styles.textDone}>Ktp Done</Text>
         }
 
         if (this.state.isLoadNpwp === false) {
             {npwpButton}
         } else if (this.state.isLoadNpwp === true) {
-            npwpButton = <Text>Npwp Done</Text>
+            npwpButton = <Text style={styles.textDone}>Npwp Done</Text>
         }
 
         if(this.state.isLoadPic === false) {
             {picButton}
         } else if(this.state.isLoadPic === true) {
-            picButton = <Text>Pic Done</Text>
+            picButton = <Text style={styles.textDone}>Pic Done</Text>
         }
 
         if(this.props.isLoadingImage) {
@@ -454,20 +457,23 @@ export class Register extends Component {
         }
 
         return (
-            <Container>
-                <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
-                    <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
-                        <Form>
-                            <Item stackedLabel>
-                                <Label>FullName</Label>
-                                <Input
+            <ScrollView
+                overScrollMode="always"
+                keyboardShouldPersistTaps="always"
+                style={styles.scrollView}
+            >
+                <Image source={require('../../img/bg.jpg')} style={styles.bgImg}/>
+                    <Card style={styles.cardStyle}>
+                            <Item stackedLabel >
+                                <Label style={styles.labelStyle}>FullName</Label>
+                                <Input autoCapitalize="words"
                                     onChangeText={(text)=>this.setState({fullname: text})}
                                     value={this.state.fullname}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Username</Label>
+                                <Label style={styles.labelStyle}>Username</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({username: text})}
                                     value={this.state.username}
@@ -475,7 +481,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Password</Label>
+                                <Label style={styles.labelStyle}>Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({password: text})}
                                     secureTextEntry={true}
@@ -484,7 +490,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Confirm Password</Label>
+                                <Label style={styles.labelStyle}>Confirm Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({confPassword: text})}
                                     secureTextEntry={true}
@@ -493,31 +499,31 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Email</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>Email</Label>
+                                <Input keyboardType="email-address"
                                     onChangeText={(text)=>this.setState({email: text})}
                                     value={this.state.email}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Phone Number</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>Phone Number</Label>
+                                <Input keyboardType="phone-pad"
                                     onChangeText={(text)=>this.setState({phone: text})}
                                     value={this.state.phone}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>KTP Number</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>KTP Number</Label>
+                                <Input keyboardType="numeric"
                                     onChangeText={(text)=>this.setState({ktpNumber: text})}
                                     value={this.state.ktpNumber}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Address</Label>
+                                <Label style={styles.labelStyle}>Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({address: text})}
                                     value={this.state.address}
@@ -525,7 +531,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>KTP Address</Label>
+                                <Label style={styles.labelStyle}>KTP Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ktpAddress: text})}
                                     value={this.state.ktpAddress}
@@ -533,7 +539,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Province</Label>
+                                <Label style={styles.labelStyle}>Province</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({province: text})}
                                     value={this.state.province}
@@ -541,7 +547,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>City</Label>
+                                <Label style={styles.labelStyle}>City</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({city: text})}
                                     value={this.state.city}
@@ -549,7 +555,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Village</Label>
+                                <Label style={styles.labelStyle}>Village</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({village: text})}
                                     value={this.state.village}
@@ -557,7 +563,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>District</Label>
+                                <Label style={styles.labelStyle}>District</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({district: text})}
                                     value={this.state.district}
@@ -565,7 +571,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Work Area</Label>
+                                <Label style={styles.labelStyle}>Work Area</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({workArea: text})}
                                     value={this.state.workArea}
@@ -573,7 +579,7 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Couple Name</Label>
+                                <Label style={styles.labelStyle}>Couple Name</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({coupleName: text})}
                                     value={this.state.coupleName}
@@ -581,31 +587,31 @@ export class Register extends Component {
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Num Dependts</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>Num Dependts</Label>
+                                <Input keyboardType="numeric"
                                     onChangeText={(text)=>this.setState({numDependts: text})}
                                     value={this.state.numDependts}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>NPWP Number</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>NPWP Number</Label>
+                                <Input keyboardType="numeric"
                                     onChangeText={(text)=>this.setState({npwpNumber: text})}
                                     value={this.state.npwpNumber}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Postal Code</Label>
-                                <Input
+                                <Label style={styles.labelStyle}>Postal Code</Label>
+                                <Input keyboardType="numeric"
                                     onChangeText={(text)=>this.setState({ postalCode: text})}
                                     value={this.state.postalCode}
                                 />
                             </Item>
 
                             <Item stackedLabel>
-                                <Label>Place of Birth</Label>
+                                <Label style={styles.labelStyle}>Place of Birth</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({placeOfBirth: text})}
                                     value={this.state.placeOfBirth}
@@ -614,7 +620,7 @@ export class Register extends Component {
 
                             <Item>
                                 <Left>
-                                    <Label>Date of Birth</Label>
+                                    <Label style={styles.labelStyle}>Date of Birth</Label>
                                 </Left>
                                 <DatePicker
                                     style={{width: 200}}
@@ -747,17 +753,14 @@ export class Register extends Component {
                             {picButton}
 
                             {/*<Button onPress={this.resetAll}>*/}
-                                {/*<Text> reset all </Text>*/}
+                            {/*<Text> reset all </Text>*/}
                             {/*</Button>*/}
 
                             {sentAllImage}
                             {sentAllData}
                             {RegisterButton}
-
-                        </Form>
                     </Card>
-                </Content>
-            </Container>
+            </ScrollView>
         );
     }
 }
@@ -778,6 +781,41 @@ const mapDispatchToProps = dispatch => {
         onTryResetData: (authData) => dispatch(tryResetData(authData)),
     };
 };
+
+const styles = {
+    cardStyle: {
+        width:'100%',
+        height:'auto',
+        paddingTop:'5%',
+        paddingBottom:'10%',
+        flex: 1,
+    },
+    labelStyle: {
+        marginLeft: '2%',
+    },
+    scrollView: {
+        flex: 1
+    },
+    bgImg: {
+        width:'100%',
+        height:'100%',
+        position:'absolute',
+        resizeMode:'cover'
+    },
+    button: {
+        marginLeft: '10%',
+        marginTop: '5%',
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonText: {
+        marginTop: 25,
+    },
+    textDone: {
+        textAlign: 'center',
+    }
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

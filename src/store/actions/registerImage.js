@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Alert} from 'react-native';
 import axios from "axios/index";
+import startDashboard from './../../screens/startDashboard/startDashboard';
+
 
 import { uiStartLoading, uiStopLoading } from "./index";
 
@@ -185,7 +187,7 @@ export const tryRegisterData = (authData) => {
                 } else {
                     dispatch(uiStopLoading());
                     alert("SUCCESS SENT ALL DATA");
-                    tryResetData();
+                    startDashboard();
                 }
                 console.log(parsedRes);
             })

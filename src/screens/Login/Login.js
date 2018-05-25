@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {AsyncStorage, Image} from 'react-native';
+import { AsyncStorage, Image } from 'react-native';
 import { Container, Content, Item, Form, Input, Button, Label, Card, CardItem, Body, Text,Left,Right } from 'native-base';
 import { connect } from 'react-redux';
 import { tryLogin } from "../../store/actions";
 import {Spinner} from "../../components/common";
 import startDashboard from '../startDashboard/startDashboard';
-
+import { ScrollView } from 'react-native';
 
 class Login extends Component {
 
