@@ -459,307 +459,306 @@ export class Register extends Component {
         return (
             <ScrollView
                 overScrollMode="always"
-                keyboardShouldPersistTaps="always"
-                style={styles.scrollView}
+                keyboardShouldPersistTaps="handled"
             >
                 <Image source={require('../../img/bg.jpg')} style={styles.bgImg}/>
                     <Card style={styles.cardStyle}>
-                            <Item stackedLabel >
-                                <Label style={styles.labelStyle}>FullName</Label>
-                                <Input autoCapitalize="words"
-                                    onChangeText={(text)=>this.setState({fullname: text})}
-                                    value={this.state.fullname}
-                                />
-                            </Item>
+                        <Item stackedLabel >
+                            <Label style={styles.labelStyle}>FullName</Label>
+                            <Input autoCapitalize="words"
+                                onChangeText={(text)=>this.setState({fullname: text})}
+                                value={this.state.fullname}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Username</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({username: text})}
-                                    value={this.state.username}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Username</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({username: text})}
+                                value={this.state.username}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Password</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({password: text})}
-                                    secureTextEntry={true}
-                                    value={this.state.password}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Password</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({password: text})}
+                                secureTextEntry={true}
+                                value={this.state.password}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Confirm Password</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({confPassword: text})}
-                                    secureTextEntry={true}
-                                    value={this.state.confPassword}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Confirm Password</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({confPassword: text})}
+                                secureTextEntry={true}
+                                value={this.state.confPassword}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Email</Label>
-                                <Input keyboardType="email-address"
-                                    onChangeText={(text)=>this.setState({email: text})}
-                                    value={this.state.email}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Email</Label>
+                            <Input keyboardType="email-address"
+                                onChangeText={(text)=>this.setState({email: text})}
+                                value={this.state.email}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Phone Number</Label>
-                                <Input keyboardType="phone-pad"
-                                    onChangeText={(text)=>this.setState({phone: text})}
-                                    value={this.state.phone}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Phone Number</Label>
+                            <Input keyboardType="phone-pad"
+                                onChangeText={(text)=>this.setState({phone: text})}
+                                value={this.state.phone}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>KTP Number</Label>
-                                <Input keyboardType="numeric"
-                                    onChangeText={(text)=>this.setState({ktpNumber: text})}
-                                    value={this.state.ktpNumber}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>KTP Number</Label>
+                            <Input keyboardType="numeric"
+                                onChangeText={(text)=>this.setState({ktpNumber: text})}
+                                value={this.state.ktpNumber}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Address</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({address: text})}
-                                    value={this.state.address}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Address</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({address: text})}
+                                value={this.state.address}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>KTP Address</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({ktpAddress: text})}
-                                    value={this.state.ktpAddress}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>KTP Address</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({ktpAddress: text})}
+                                value={this.state.ktpAddress}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Province</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({province: text})}
-                                    value={this.state.province}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Province</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({province: text})}
+                                value={this.state.province}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>City</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({city: text})}
-                                    value={this.state.city}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>City</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({city: text})}
+                                value={this.state.city}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Village</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({village: text})}
-                                    value={this.state.village}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Village</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({village: text})}
+                                value={this.state.village}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>District</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({district: text})}
-                                    value={this.state.district}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>District</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({district: text})}
+                                value={this.state.district}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Work Area</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({workArea: text})}
-                                    value={this.state.workArea}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Work Area</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({workArea: text})}
+                                value={this.state.workArea}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Couple Name</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({coupleName: text})}
-                                    value={this.state.coupleName}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Couple Name</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({coupleName: text})}
+                                value={this.state.coupleName}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Num Dependts</Label>
-                                <Input keyboardType="numeric"
-                                    onChangeText={(text)=>this.setState({numDependts: text})}
-                                    value={this.state.numDependts}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Num Dependts</Label>
+                            <Input keyboardType="numeric"
+                                onChangeText={(text)=>this.setState({numDependts: text})}
+                                value={this.state.numDependts}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>NPWP Number</Label>
-                                <Input keyboardType="numeric"
-                                    onChangeText={(text)=>this.setState({npwpNumber: text})}
-                                    value={this.state.npwpNumber}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>NPWP Number</Label>
+                            <Input keyboardType="numeric"
+                                onChangeText={(text)=>this.setState({npwpNumber: text})}
+                                value={this.state.npwpNumber}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Postal Code</Label>
-                                <Input keyboardType="numeric"
-                                    onChangeText={(text)=>this.setState({ postalCode: text})}
-                                    value={this.state.postalCode}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Postal Code</Label>
+                            <Input keyboardType="numeric"
+                                onChangeText={(text)=>this.setState({ postalCode: text})}
+                                value={this.state.postalCode}
+                            />
+                        </Item>
 
-                            <Item stackedLabel>
-                                <Label style={styles.labelStyle}>Place of Birth</Label>
-                                <Input
-                                    onChangeText={(text)=>this.setState({placeOfBirth: text})}
-                                    value={this.state.placeOfBirth}
-                                />
-                            </Item>
+                        <Item stackedLabel>
+                            <Label style={styles.labelStyle}>Place of Birth</Label>
+                            <Input
+                                onChangeText={(text)=>this.setState({placeOfBirth: text})}
+                                value={this.state.placeOfBirth}
+                            />
+                        </Item>
 
-                            <Item>
-                                <Left>
-                                    <Label style={styles.labelStyle}>Date of Birth</Label>
-                                </Left>
-                                <DatePicker
-                                    style={{width: 200}}
-                                    date={this.state.date}
-                                    mode="date"
-                                    placeholder="Select Date"
-                                    format="YYYY-MM-DD"
-                                    minDate="1960-01-01"
-                                    maxDate="2018-12-31"
-                                    confirmBtnText="Confirm"
-                                    cancelBtnText="Cancel"
-                                    customStyles={{
-                                        dateIcon: {
-                                            position: 'absolute',
-                                            left: 0,
-                                            top: 4,
-                                            marginLeft: 0
-                                        },
-                                        dateInput: {
-                                            marginLeft: 36
-                                        }
-                                    }}
-                                    onDateChange={(date) => {this.setState({date: date})}}
-                                />
-                            </Item>
+                        <Item>
+                            <Left>
+                                <Label style={styles.labelStyle}>Date of Birth</Label>
+                            </Left>
+                            <DatePicker
+                                style={{width: 200}}
+                                date={this.state.date}
+                                mode="date"
+                                placeholder="Select Date"
+                                format="YYYY-MM-DD"
+                                minDate="1960-01-01"
+                                maxDate="2018-12-31"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                customStyles={{
+                                    dateIcon: {
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: 4,
+                                        marginLeft: 0
+                                    },
+                                    dateInput: {
+                                        marginLeft: 36
+                                    }
+                                }}
+                                onDateChange={(date) => {this.setState({date: date})}}
+                            />
+                        </Item>
 
-                            <CardItem>
-                                <Left>
-                                    <Label>Gender</Label>
-                                </Left>
+                        <CardItem>
+                            <Left>
+                                <Label>Gender</Label>
+                            </Left>
 
-                                <Picker
-                                    mode="dropdown"
-                                    placeHolder="choose one"
-                                    iosHeader="Gender"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.gender}
-                                    onValueChange={(value)=>this.setState({gender:value})}
+                            <Picker
+                                mode="dropdown"
+                                placeHolder="choose one"
+                                iosHeader="Gender"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.gender}
+                                onValueChange={(value)=>this.setState({gender:value})}
 
-                                >
-                                    {this.state.genderOptions}
-                                </Picker>
-                            </CardItem>
+                            >
+                                {this.state.genderOptions}
+                            </Picker>
+                        </CardItem>
 
-                            <CardItem>
-                                <Left>
-                                    <Label>Marital Status</Label>
-                                </Left>
-                                <Picker
-                                    mode="dropdown"
-                                    iosHeader="Marital Status"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.marital}
-                                    onValueChange={(value)=>this.setState({marital:value})}
-                                >
-                                    {this.state.maritalOptions}
-                                </Picker>
-                            </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Label>Marital Status</Label>
+                            </Left>
+                            <Picker
+                                mode="dropdown"
+                                iosHeader="Marital Status"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.marital}
+                                onValueChange={(value)=>this.setState({marital:value})}
+                            >
+                                {this.state.maritalOptions}
+                            </Picker>
+                        </CardItem>
 
 
-                            <CardItem>
-                                <Left>
-                                    <Label>Religion</Label>
-                                </Left>
-                                <Picker
-                                    mode="dropdown"
-                                    iosHeader="Religion"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.religion}
-                                    onValueChange={(value)=>this.setState({religion:value})}
-                                >
-                                    {this.state.religionOptions}
-                                </Picker>
-                            </CardItem>
-                            <CardItem>
-                                <Left>
-                                    <Label>Work</Label>
-                                </Left>
-                                <Picker
-                                    mode="dropdown"
-                                    iosHeader="Work"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.work}
-                                    onValueChange={(value)=>this.setState({work:value})}
-                                >
-                                    {this.state.workOptions}
-                                </Picker>
-                            </CardItem>
-                            <CardItem>
-                                <Left>
-                                    <Label>Education</Label>
-                                </Left>
-                                <Picker
-                                    mode="dropdown"
-                                    iosHeader="education"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.education}
-                                    onValueChange={(value)=>this.setState({education:value})}
-                                >
-                                    {this.state.educationOptions}
-                                </Picker>
-                            </CardItem>
-                            <CardItem>
-                                <Left>
-                                    <Label>Salary</Label>
-                                </Left>
-                                <Picker
-                                    mode="dropdown"
-                                    iosHeader="salary"
-                                    iosIcon={<Icon name="ios-arrow-down-outline" />}
-                                    style={{ width: undefined }}
-                                    selectedValue={this.state.salary}
-                                    onValueChange={(value)=>this.setState({salary:value})}
-                                >
-                                    {this.state.salaryRangeOptions}
-                                </Picker>
-                            </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Label>Religion</Label>
+                            </Left>
+                            <Picker
+                                mode="dropdown"
+                                iosHeader="Religion"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.religion}
+                                onValueChange={(value)=>this.setState({religion:value})}
+                            >
+                                {this.state.religionOptions}
+                            </Picker>
+                        </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Label>Work</Label>
+                            </Left>
+                            <Picker
+                                mode="dropdown"
+                                iosHeader="Work"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.work}
+                                onValueChange={(value)=>this.setState({work:value})}
+                            >
+                                {this.state.workOptions}
+                            </Picker>
+                        </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Label>Education</Label>
+                            </Left>
+                            <Picker
+                                mode="dropdown"
+                                iosHeader="education"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.education}
+                                onValueChange={(value)=>this.setState({education:value})}
+                            >
+                                {this.state.educationOptions}
+                            </Picker>
+                        </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Label>Salary</Label>
+                            </Left>
+                            <Picker
+                                mode="dropdown"
+                                iosHeader="salary"
+                                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                                style={{ width: undefined }}
+                                selectedValue={this.state.salary}
+                                onValueChange={(value)=>this.setState({salary:value})}
+                            >
+                                {this.state.salaryRangeOptions}
+                            </Picker>
+                        </CardItem>
 
-                            {salaryButton}
+                        {salaryButton}
 
-                            {ktpButton}
+                        {ktpButton}
 
-                            {npwpButton}
+                        {npwpButton}
 
-                            {picButton}
+                        {picButton}
 
-                            {/*<Button onPress={this.resetAll}>*/}
-                            {/*<Text> reset all </Text>*/}
-                            {/*</Button>*/}
+                        {/*<Button onPress={this.resetAll}>*/}
+                        {/*<Text> reset all </Text>*/}
+                        {/*</Button>*/}
 
-                            {sentAllImage}
-                            {sentAllData}
-                            {RegisterButton}
-                    </Card>
+                        {sentAllImage}
+                        {sentAllData}
+                        {RegisterButton}
+                </Card>
             </ScrollView>
         );
     }
@@ -792,9 +791,6 @@ const styles = {
     },
     labelStyle: {
         marginLeft: '2%',
-    },
-    scrollView: {
-        flex: 1
     },
     bgImg: {
         width:'100%',

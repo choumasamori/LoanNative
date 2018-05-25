@@ -5,7 +5,7 @@ class Tes extends Component {
 
     render(){
         return (
-            <ScrollView keyboardShouldPersistTaps="handled">
+            <ScrollView keyboardShouldPersistTaps="always">
                 <TextInput
                     underlineColorAndroid="transparent"
                     placeholder="Login"
