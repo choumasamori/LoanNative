@@ -528,7 +528,6 @@ export class Register extends Component {
                                 </Picker>
                             </CardItem>
 
-
                             <CardItem>
                                 <Left>
                                     <Label style={{fontWeight:'bold'}}>Religion</Label>
@@ -545,6 +544,7 @@ export class Register extends Component {
                                     {this.state.religionOptions}
                                 </Picker>
                             </CardItem>
+
                             <CardItem>
                                 <Left>
                                     <Label style={{fontWeight:'bold'}}>Work</Label>
@@ -561,6 +561,7 @@ export class Register extends Component {
                                     {this.state.workOptions}
                                 </Picker>
                             </CardItem>
+
                             <CardItem>
                                 <Left>
                                     <Label style={{fontWeight:'bold'}}>Education</Label>
@@ -577,6 +578,7 @@ export class Register extends Component {
                                     {this.state.educationOptions}
                                 </Picker>
                             </CardItem>
+
                             <CardItem>
                                 <Left>
                                     <Label style={{fontWeight:'bold'}}>Salary</Label>
@@ -594,32 +596,51 @@ export class Register extends Component {
                                 </Picker>
                             </CardItem>
 
+                            <CardItem>
+                                <Left>
+                                     <Label style={{fontWeight:'bold'}}>Upload Salary Image</Label>
+                                </Left>
                             <Button title = "Pick Image Salary" onPress={()=>this.pickImageHandler(1)}>
-                                <Text> Salary </Text>
+                                <Text style={{fontWeight:'bold'}}>+</Text>
                             </Button>
+                            </CardItem>
 
-                            <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
-                                <Text> ktpScan </Text>
+                            <CardItem>
+                                <Left>
+                                     <Label style={{fontWeight:'bold'}}>Upload KTP Image</Label>
+                                </Left>
+                                <Button title = "Pick Image Ktp" onPress = {() =>this.pickImageHandler(2)}>
+                                <Text style={{fontWeight:'bold'}}>+</Text>
                             </Button>
+                            </CardItem>
 
-                            <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
-                                <Text> npwpScan </Text>
+                            <CardItem>
+                                <Left>
+                                     <Label style={{fontWeight:'bold'}}>Upload NPWP Image</Label>
+                                </Left>
+                                <Button title = "Pick Image Npwp" onPress = {()=>this.pickImageHandler(3)}>
+                                <Text style={{fontWeight:'bold'}}>+</Text>
                             </Button>
+                            </CardItem>
 
-                            <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
-                                <Text> picture </Text>
+                            <CardItem>
+                                <Left>
+                                     <Label style={{fontWeight:'bold'}}>Upload Your Picture</Label>
+                                </Left>
+                                <Button title = "Pick Image Picture"onPress={()=>this.pickImageHandler(4)}>
+                                <Text style={{fontWeight:'bold'}}>+</Text>
                             </Button>
+                            </CardItem>
+                                {/*
+                                <Button  onPress={ this.RegisterImage }>
+                                     <Text>Sent All Image</Text>
+                                </Button>
 
-
-                            <Button  onPress={ this.RegisterImage }>
-                                <Text>Sent All Image</Text>
-                            </Button>
-
-                            <Button  onPress={ this.registerDataSubmit }>
-                                <Text>Sent All Data</Text>
-                            </Button>
-
-                            <Button  onPress={ this.sentAllData }>
+                               <Button  onPress={ this.registerDataSubmit }>
+                                    <Text>Sent All Data</Text>
+                               </Button>
+                                */}
+                            <Button  onPress={ this.sentAllData } style={{justifyContent:'center', alignSelf:'center'}}>
                                 <Text>REGISTER</Text>
                             </Button>
 
