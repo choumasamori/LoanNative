@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
-import ImagePicker from 'react-native-image-picker'
+import ImagePicker from 'react-native-image-picker';
+import { Image } from 'react-native';
 
 import { tryRegisterImage ,tryRegisterData} from "../../store/actions";
 
@@ -80,7 +81,6 @@ export class Register extends Component {
         }).then((results) => results.json()).then((data)=>{
             let options =  data.genderOptions.map((option, i)=>{
                 return(
-                    
                     <Picker.Item label={option} value={option} key={i}/>
                 );
             });
@@ -228,7 +228,6 @@ export class Register extends Component {
         this.RegisterImage();
         this.registerDataSubmit();
     }
-
     pickImageHandler = (image) => {
         if(image === 1) {
 
@@ -327,140 +326,141 @@ export class Register extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{backgroundColor:'white'}}>
+            <Image source={require('../../img/bg.jpg')} style={{width:'100%', height:'100%', position:'absolute', resizeMode:'cover'}}/>
                 <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
-                    <Card style={{width:'80%',height:'auto',paddingTop:'5%',paddingBottom:'10%'}}>
+                    <Card style={{width:'80%',height:'auto',padding:'5%'}}>
                         <Form>
-                            <Item floatingLabel>
-                                <Label>Full Name</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Full Name</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({fullname: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Username</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Username</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({username: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Password</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({password: text})}
                                     secureTextEntry={true}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Confirm Password</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Confirm Password</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({confPassword: text})}
                                     secureTextEntry={true}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Email</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Email</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({email: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Phone Number</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Phone Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({phone: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>KTP Number</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>KTP Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ktpNumber: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Address</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({address: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>KTP Address</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>KTP Address</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({ktpAddress: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Province</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Province</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({province: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>City</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>City</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({city: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Village</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Village</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({village: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>District</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>District</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({district: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Work Area</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Work Area</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({workArea: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Couple Name</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Couple Name</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({coupleName: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Num Dependts</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Num Dependts</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({numDependts: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>NPWP Number</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>NPWP Number</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({npwpNumber: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Postal Code</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Postal Code</Label>
                                 <Input
-                                    onChangeText={(text)=>this.setState({ postalCode: text})}
+                                    onChangeText={(text)=>this.setState({postalCode: text})}
                                 />
                             </Item>
 
-                            <Item floatingLabel>
-                                <Label>Place of Birth</Label>
+                            <Item stackedLabel>
+                                <Label style={{fontWeight:'bold'}}>Place of Birth</Label>
                                 <Input
                                     onChangeText={(text)=>this.setState({placeOfBirth: text})}
                                 />
@@ -468,7 +468,7 @@ export class Register extends Component {
 
                             <Item>
                                 <Left>
-                                    <Label>Date of Birth</Label>
+                                    <Label style={{fontWeight:'bold'}}>Date of Birth</Label>
                                 </Left>
                                 <DatePicker
                                     style={{width: 200}}
@@ -497,7 +497,7 @@ export class Register extends Component {
 
                             <CardItem>
                                 <Left>
-                                    <Label>Gender</Label>
+                                    <Label style={{fontWeight:'bold'}}>Gender</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -513,7 +513,7 @@ export class Register extends Component {
 
                             <CardItem>
                                 <Left>
-                                    <Label>Marital Status</Label>
+                                    <Label style={{fontWeight:'bold'}}>Marital Status</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -531,7 +531,7 @@ export class Register extends Component {
 
                             <CardItem>
                                 <Left>
-                                    <Label>Religion</Label>
+                                    <Label style={{fontWeight:'bold'}}>Religion</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -547,7 +547,7 @@ export class Register extends Component {
                             </CardItem>
                             <CardItem>
                                 <Left>
-                                    <Label>Work</Label>
+                                    <Label style={{fontWeight:'bold'}}>Work</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -563,7 +563,7 @@ export class Register extends Component {
                             </CardItem>
                             <CardItem>
                                 <Left>
-                                    <Label>Education</Label>
+                                    <Label style={{fontWeight:'bold'}}>Education</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -579,7 +579,7 @@ export class Register extends Component {
                             </CardItem>
                             <CardItem>
                                 <Left>
-                                    <Label>Salary</Label>
+                                    <Label style={{fontWeight:'bold'}}>Salary</Label>
                                 </Left>
                                 <Picker
                                     mode="dropdown"
@@ -630,7 +630,6 @@ export class Register extends Component {
         );
     }
 }
-
 
 const mapDispatchToProps = dispatch => {
     return {
