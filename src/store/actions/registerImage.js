@@ -8,7 +8,8 @@ const initialState = {
     urlNPWP: '',
     urlPic: ''
 };
-
+  
+  
 export const tryRegisterImage = (authData1, authData2, authData3, authData4) => {
     return dispatch => {
         var data1 = new FormData();
@@ -54,7 +55,8 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
             },
             timeout: 10000
         }
-
+        
+          
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data1, config)
             .then(response => {
                 //console.log(response)

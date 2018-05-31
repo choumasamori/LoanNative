@@ -21,6 +21,8 @@ export class Register extends Component {
     constructor(props){
         super(props);
         this.state={
+            loading:false,
+
             genderOptions:null,
             maritalOptions:null,
             religionOptions:null,
@@ -225,13 +227,14 @@ export class Register extends Component {
     }
 
     sentAllData = () => {
-        
+        this.setState({loading:true});
         this.RegisterImage();
         this.registerDataSubmit();
+        this.setState({loading:false});
     }
     pickImageHandler = (image) => {
         if(image === 1) {
-
+            this.setState({loading:true});
             ImagePicker.showImagePicker(options, (response) => {
                 if(response.didCancel){
                     console.log("User cancelled");
@@ -251,10 +254,11 @@ export class Register extends Component {
                         imageUriSalary: uri,
                     });
                     console.log("imageData salary : "+data);
+                    this.setState({loading:false});
                 }
             });
         } else if (image === 2) {
-
+            this.setState({loading:true});
             ImagePicker.showImagePicker(options, (response) => {
                 if(response.didCancel){
                     console.log("User cancelled");
@@ -274,10 +278,11 @@ export class Register extends Component {
                         imageUriKtp: uri,
                     });
                     console.log("imageData ktp : "+data);
+                    this.setState({loading:false});
                 }
             });
         } else if (image === 3) {
-
+            this.setState({loading:true});
             ImagePicker.showImagePicker(options, (response) => {
                 if(response.didCancel){
                     console.log("User cancelled");
@@ -297,10 +302,11 @@ export class Register extends Component {
                         imageUriNpwp: uri,
                     });
                     console.log("imageData npwp : "+data);
+                    this.setState({loading:false});
                 }
             });
         } else if (image === 4) {
-
+            this.setState({loading:true});
             ImagePicker.showImagePicker(options, (response) => {
                 if(response.didCancel){
                     console.log("User cancelled");
@@ -320,12 +326,18 @@ export class Register extends Component {
                         imageUriPic: uri,
                     });
                     console.log("imageData pic : "+data);
+                    this.setState({loading:false});
                 }
             });
         }
     }
 
     render() {
+        if(this.state.loading){
+           return(
+               <ActivityIndicator animating={true} size='large'/>
+           ); 
+        }
         return (
             <Container style={{backgroundColor:'white'}}>
             <Image source={require('../../img/bg.jpg')} style={{width:'100%', height:'100%', position:'absolute', resizeMode:'cover'}}/>
@@ -335,14 +347,14 @@ export class Register extends Component {
                             <Label style={{padding:'3%',fontWeight:'bold', fontSize:25, alignSelf:'center'}}>REGISTERATION FORM</Label>
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Full Name</Label>
-                                <Input
+                                <Input value={this.state.fullname}
                                     onChangeText={(text)=>this.setState({fullname: text})}
                                 />
                             </Item>
 
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Username</Label>
-                                <Input
+                                <Input value={this.state.username}
                                     onChangeText={(text)=>this.setState({username: text})}
                                 />
                             </Item>
@@ -350,6 +362,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Password</Label>
                                 <Input
+                                    value={this.state.password}
                                     onChangeText={(text)=>this.setState({password: text})}
                                     secureTextEntry={true}
                                 />
@@ -358,6 +371,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Confirm Password</Label>
                                 <Input
+                                    value={this.state.confPassword}
                                     onChangeText={(text)=>this.setState({confPassword: text})}
                                     secureTextEntry={true}
                                 />
@@ -366,6 +380,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Email</Label>
                                 <Input
+                                value={this.state.email}
                                     onChangeText={(text)=>this.setState({email: text})}
                                 />
                             </Item>
@@ -373,6 +388,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Phone Number</Label>
                                 <Input
+                                    value={this.state.phone}
                                     onChangeText={(text)=>this.setState({phone: text})}
                                 />
                             </Item>
@@ -380,6 +396,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>KTP Number</Label>
                                 <Input
+                                    value={this.state.ktpNumber}
                                     onChangeText={(text)=>this.setState({ktpNumber: text})}
                                 />
                             </Item>
@@ -387,6 +404,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Address</Label>
                                 <Input
+                                    value={this.state.address}
                                     onChangeText={(text)=>this.setState({address: text})}
                                 />
                             </Item>
@@ -394,6 +412,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>KTP Address</Label>
                                 <Input
+                                    value={this.state.ktpAddress}
                                     onChangeText={(text)=>this.setState({ktpAddress: text})}
                                 />
                             </Item>
@@ -401,6 +420,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Province</Label>
                                 <Input
+                                    value={this.state.province}
                                     onChangeText={(text)=>this.setState({province: text})}
                                 />
                             </Item>
@@ -408,6 +428,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>City</Label>
                                 <Input
+                                value={this.state.city}
                                     onChangeText={(text)=>this.setState({city: text})}
                                 />
                             </Item>
@@ -415,6 +436,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Village</Label>
                                 <Input
+                                value={this.state.village}
                                     onChangeText={(text)=>this.setState({village: text})}
                                 />
                             </Item>
@@ -422,6 +444,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>District</Label>
                                 <Input
+                                    value={this.state.district}
                                     onChangeText={(text)=>this.setState({district: text})}
                                 />
                             </Item>
@@ -429,6 +452,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Work Area</Label>
                                 <Input
+                                    value={this.state.workArea}
                                     onChangeText={(text)=>this.setState({workArea: text})}
                                 />
                             </Item>
@@ -436,6 +460,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Couple Name</Label>
                                 <Input
+                                    value={this.state.coupleName}
                                     onChangeText={(text)=>this.setState({coupleName: text})}
                                 />
                             </Item>
@@ -443,6 +468,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Num Dependts</Label>
                                 <Input
+                                    value={this.state.numDependts}
                                     onChangeText={(text)=>this.setState({numDependts: text})}
                                 />
                             </Item>
@@ -450,6 +476,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>NPWP Number</Label>
                                 <Input
+                                    value={this.state.npwpNumber}
                                     onChangeText={(text)=>this.setState({npwpNumber: text})}
                                 />
                             </Item>
@@ -457,6 +484,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Postal Code</Label>
                                 <Input
+                                    value={this.state.postalCode}
                                     onChangeText={(text)=>this.setState({postalCode: text})}
                                 />
                             </Item>
@@ -464,6 +492,7 @@ export class Register extends Component {
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Place of Birth</Label>
                                 <Input
+                                    value={this.state.placeOfBirth}
                                     onChangeText={(text)=>this.setState({placeOfBirth: text})}
                                 />
                             </Item>
@@ -473,6 +502,7 @@ export class Register extends Component {
                                     <Label style={{fontWeight:'bold'}}>Date of Birth</Label>
                                 </Left>
                                 <DatePicker
+                                    
                                     style={{width: 200}}
                                     date={this.state.date}
                                     mode="date"
@@ -606,6 +636,7 @@ export class Register extends Component {
                                 <Text style={{fontWeight:'bold'}}>+</Text>
                             </Button>
                             </CardItem>
+                            
 
                             <CardItem>
                                 <Left>
