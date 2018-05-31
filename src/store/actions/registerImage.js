@@ -56,51 +56,55 @@ export const tryRegisterImage = (authData1, authData2, authData3, authData4) => 
             timeout: 10000
         }
         
-          
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data1, config)
-            .then(response => {
-                //console.log(response)
-                console.log("ini url img salary " + response.data.url);
-                initialState.urlSalary = response.data.url;
-            })
-            .catch((error) => {
-                alert("uplod img fail salary");
-                console.log("Error " + error)
-            })
-
+        .then(response => {
+            //console.log(response)
+            console.log("ini url img salary " + response.data.url);
+            initialState.urlSalary = response.data.url;
+        })
+        .catch((error) => {
+            alert("uplod img fail salary");
+            console.log("Error " + error)
+        })
+       
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data2, config)
-            .then(response => {
-                //console.log(response)
-                console.log("ini url img ktp " + response.data.url);
-                initialState.urlKTP = response.data.url;
-            })
-            .catch((error) => {
-                alert("uplod img fail ktp");
-                console.log("Error " + error)
-            })
+       .then(response => {
+           //console.log(response)
+           console.log("ini url img ktp " + response.data.url);
+           initialState.urlKTP = response.data.url;
+       })
+       .catch((error) => {
+           alert("uplod img fail ktp");
+           console.log("Error " + error)
+       })
 
         axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data3, config)
-            .then(response => {
-                //console.log(response)
-                console.log("ini url img npwp " + response.data.url);
-                initialState.urlNPWP = response.data.url;
-            })
-            .catch((error) => {
-                alert("uplod img fail npwp");
-                console.log("Error " + error)
-            })
+       .then(response => {
+           //console.log(response)
+           console.log("ini url img npwp " + response.data.url);
+           initialState.urlNPWP = response.data.url;
+       })
+       .catch((error) => {
+           alert("uplod img fail npwp");
+           console.log("Error " + error)
+       })
 
-        axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data4, config)
-            .then(response => {
-                alert("success sent all image");
-                //console.log(response)
-                console.log("ini url img pic " + response.data.url);
-                initialState.urlPic = response.data.url;
-            })
-            .catch((error) => {
-                alert("uplod img fail pic");
-                console.log("Error " + error)
-            })
+       axios.post('http://wf.dev.neo-fusion.com/tdfp2p/ws/registration/image', data4, config)
+       .then(response => {
+           alert("success sent all image");
+           //console.log(response)
+           console.log("ini url img pic " + response.data.url);
+           initialState.urlPic = response.data.url;
+       })
+       .catch((error) => {
+           alert("uplod img fail pic");
+           console.log("Error " + error)
+       })
+        
+
+        
+
+        
     };
 }
 
