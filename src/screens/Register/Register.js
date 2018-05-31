@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Item, Content, Form, Input, Button, Label, Card, CardItem, Body, Text, Picker, Icon, Left, Right} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
-import { Image } from 'react-native';
+import { Image , ActivityIndicator} from 'react-native';
 
 import { tryRegisterImage ,tryRegisterData} from "../../store/actions";
 
@@ -225,6 +225,7 @@ export class Register extends Component {
     }
 
     sentAllData = () => {
+        
         this.RegisterImage();
         this.registerDataSubmit();
     }
@@ -331,6 +332,7 @@ export class Register extends Component {
                 <Content scrollEnabled contentContainerStyle={{justifyContent: 'center',alignItems: 'center', marginTop:'10%', marginBottom:'10%'}}>
                     <Card style={{width:'80%',height:'auto',padding:'5%'}}>
                         <Form>
+                            <Label style={{padding:'3%',fontWeight:'bold', fontSize:25, alignSelf:'center'}}>REGISTERATION FORM</Label>
                             <Item stackedLabel>
                                 <Label style={{fontWeight:'bold'}}>Full Name</Label>
                                 <Input
